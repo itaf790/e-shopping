@@ -53,17 +53,17 @@ public class register extends AppCompatActivity {
 
     private void CreateAccount() {
         String name= inputname.getText().toString() ;
-        String emailsign= inputemail.getText().toString() ;
-        String passsign= inputpass.getText().toString() ;
+        String email= inputemail.getText().toString() ;
+        String password= inputpass.getText().toString() ;
 
         if (TextUtils.isEmpty(name)){
-            Toast.makeText(this, "Please wriite your name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please write your name", Toast.LENGTH_SHORT).show();
         }
-       else if (TextUtils.isEmpty(emailsign)){
-            Toast.makeText(this, "Please wriite your email", Toast.LENGTH_SHORT).show();
+       else if (TextUtils.isEmpty(email)){
+            Toast.makeText(this, "Please write your email", Toast.LENGTH_SHORT).show();
         }
-       else if (TextUtils.isEmpty(passsign)){
-            Toast.makeText(this, "Please wriite your password", Toast.LENGTH_SHORT).show();
+       else if (TextUtils.isEmpty(password)){
+            Toast.makeText(this, "Please write your password", Toast.LENGTH_SHORT).show();
         }
        else{
 
@@ -72,24 +72,24 @@ public class register extends AppCompatActivity {
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
             
-            Validaemail(name,emailsign,passsign);
+            Validaemail(name,email,password);
         }
 
     }
 
-    private void Validaemail(final String name, final String emailsign, final String passsign) {
+    private void Validaemail(final String name, final String email, final String password) {
         final DatabaseReference RootRef;
         RootRef= FirebaseDatabase.getInstance().getReference();
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (!(snapshot.child("Users").child(emailsign).exists())) {
+                if (!(snapshot.child("Users").child(email).exists())) {
                     HashMap<String, Object> userdataMap= new HashMap<>();
                     userdataMap.put("name",name);
-                    userdataMap.put("name",emailsign);
-                    userdataMap.put("name",passsign);
+                    userdataMap.put("email",email);
+                    userdataMap.put("password",password);
 
-                    RootRef.child("Users").child(emailsign).updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    RootRef.child("Users").child(email).updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
@@ -115,7 +115,7 @@ public class register extends AppCompatActivity {
 
 
                 } else {
-                    Toast.makeText(register.this, "This" + emailsign + "already exists", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(register.this, "This" + email + "already exists", Toast.LENGTH_SHORT).show();
                 loadingBar.dismiss();
                     Toast.makeText(register.this, "Please etry again using another email", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(register.this, login.class);

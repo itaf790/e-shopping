@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminCategoryActivity">
+
+    <TextView
+        android:id="@+id/slogn_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Add New Products"
+        android:textAlignment="center"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal" />
+
+    <LinearLayout
+        android:id="@+id/linear_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="45dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/slogn_category">
+
+
+        <ImageView
+            android:id="@+id/airpods"
+            android:layout_width="202dp"
+            android:layout_height="100dp"
+            android:src="@drawable/airpods" />
+
+        <ImageView
+            android:id="@+id/magickey"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/magickyeybored" />
+
+    </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/linear2_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/linear_category"
+          android:layout_marginTop="40dp">
+
+
+          <ImageView
+              android:id="@+id/logitech"
+              android:layout_width="202dp"
+              android:layout_height="100dp"
+              android:src="@drawable/logitech" />
+
+        <ImageView
+            android:id="@+id/watch"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:src="@drawable/watch"/>
+
+      </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear3_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/linear2_category">
+
+
+        <ImageView
+            android:id="@+id/jbl"
+            android:layout_width="216dp"
+            android:layout_height="100dp"
+            android:src="@drawable/jbl" />
+        <ImageView
+            android:id="@+id/temp"
+            android:layout_width="216dp"
+            android:layout_height="100dp"
+            android:src="@drawable/temp" />
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>
