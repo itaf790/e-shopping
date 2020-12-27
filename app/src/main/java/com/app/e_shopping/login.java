@@ -39,6 +39,8 @@ public class login extends AppCompatActivity {
     private String parentDbName="Users";
 
 
+
+
     //private CheckBox checkBoxrememberme;
      private CheckBox remember;
 
@@ -162,15 +164,17 @@ public class login extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.child(parentDbName).child(email).exists()){
+
                     Users usersData= snapshot.child(parentDbName).child(email).getValue(Users.class);
                     if (usersData.getEmail().equals(email))
                     {
                         if (usersData.getPassword().equals(password))
                         {
+
                            if (parentDbName.equals("Admins"))
                            {
 
-                               Intent intent = new Intent(login.this, AdminActivity.class);
+                               Intent intent = new Intent(login.this, AdminCategoryActivity.class);
                                startActivity(intent);
 
                                Toast.makeText(login.this, "Welcome Admin, you are logged in Succeessfully", Toast.LENGTH_SHORT).show();

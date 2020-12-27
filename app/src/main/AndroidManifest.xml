@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AdminCategoryActivity"></activity>
-        <activity android:name=".AdminActivity" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
