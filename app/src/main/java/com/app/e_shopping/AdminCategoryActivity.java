@@ -22,6 +22,8 @@ public class AdminCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_category);
 
+
+
         logOutBtn = (Button) findViewById(R.id.admin_logout_btn);
         checkOrdersBtn = (Button) findViewById(R.id.check_orders_btn);
 
@@ -51,6 +53,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
         watch = (ImageView) findViewById(R.id.watch);
 
         temp = (ImageView) findViewById(R.id.temp);
+        magickeyboared= (ImageView) findViewById(R.id.magickey);
 
 
         airpods.setOnClickListener(new View.OnClickListener() {

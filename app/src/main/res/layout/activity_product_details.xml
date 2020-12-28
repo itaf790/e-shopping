@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductDetailsActivity">
+    tools:context=".ProductDetailsActivity"
+    android:background="@color/background">
 
     <ImageView
         android:id="@+id/product_image_details"
@@ -68,16 +69,20 @@
 
     </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 
-    <Button
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pd_add_to_cart_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:layout_margin="15dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/nav_cart"
+        android:elevation="6dp"
         android:layout_alignParentBottom="true"
-        android:text="Add to Cart"
-        android:textColor="@android:color/white"
-        android:textSize="18dp"
+        android:layout_alignParentRight="true"
+
+
         />
 
 

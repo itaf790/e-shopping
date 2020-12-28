@@ -89,7 +89,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode,  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == GalleryPick && resultCode == RESULT_OK && data != null) {
@@ -107,20 +107,20 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
         if (imageUri == null) {
 
-            Toast.makeText(this, "Product image is mandatory...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Product image is mandatory", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(description)) {
 
-            Toast.makeText(this, "Please write product description...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please write product description", Toast.LENGTH_SHORT).show();
 
 
         } else if (TextUtils.isEmpty(price)) {
 
-            Toast.makeText(this, "Please write product price...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please write product price", Toast.LENGTH_SHORT).show();
 
 
         } else if (TextUtils.isEmpty(pname)) {
 
-            Toast.makeText(this, "Please write product name...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please write product name", Toast.LENGTH_SHORT).show();
 
 
         }
