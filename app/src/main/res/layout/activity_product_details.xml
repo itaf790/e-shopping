@@ -71,19 +71,19 @@
 
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/pd_add_to_cart_button"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/nav_cart"
-        android:elevation="6dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-
-
+        android:background="@color/colorPrimaryDark"
+        android:layout_margin="15dp"
+        android:layout_centerInParent="true"
+        android:text="Add to Cart"
+        android:textColor="@android:color/white"
+        android:textSize="18dp"
+        android:layout_below="@id/number_btn"
         />
+
 
 
 

@@ -47,7 +47,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         productID = getIntent().getStringExtra("pid");
 
-        addToCartButton = (Button) findViewById(R.id.pd_add_to_cart_button);
+       addToCartButton = (Button) findViewById(R.id.pd_add_to_cart_button);
         numberButton = (ElegantNumberButton) findViewById(R.id.number_btn);
         productImage = (ImageView) findViewById(R.id.product_image_details);
         productPrice = (TextView) findViewById(R.id.product_price_details);
@@ -136,23 +136,23 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private void getProductDetails(String productID) {
 
-        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference("Products");
+        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Products");
         productsRef.child(productID).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange( DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()){
                     Products products = dataSnapshot.getValue(Products.class);
 
                     productName.setText(products.getPname());
                     productPrice.setText(products.getPrice());
-                    productDescription.setText(products.getDesc());
+                    productDescription.setText(products.getDescription());
                     Picasso.get().load(products.getImage()).into(productImage);
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled( DatabaseError databaseError) {
 
             }
         });

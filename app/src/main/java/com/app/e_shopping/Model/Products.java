@@ -2,16 +2,16 @@ package com.app.e_shopping.Model;
 
 public class Products {
 
-    private String pname, desc,price, image,category, date,pid,time;
+    private String pname, description,price, image,category, date,pid,time;
 
     public Products(){
 
 
     }
 
-    public Products(String pname, String desc, String price, String image, String category, String date, String pid, String time) {
+    public Products(String pname, String description, String price, String image, String category, String date, String pid, String time) {
         this.pname = pname;
-        this.desc = desc;
+        this.description = description;
         this.price = price;
         this.image = image;
         this.category = category;
@@ -28,12 +28,12 @@ public class Products {
         this.pname = pname;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
     public void setDesc(String desc) {
-        this.desc = desc;
+        this.description = desc;
     }
 
     public String getPrice() {
