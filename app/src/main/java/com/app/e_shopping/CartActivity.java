@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.e_shopping.Model.Cart;
+import com.app.e_shopping.Prevalent.Prevalent;
 import com.app.e_shopping.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -80,13 +81,12 @@ public class CartActivity extends AppCompatActivity {
         super.onStart();
         checkOrderState();
 
-        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference("CartList");
+        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
         FirebaseRecyclerOptions<Cart> options =
                 new FirebaseRecyclerOptions.Builder<Cart>()
-                .setQuery(cartListRef.child("UserView")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .child("Products"),Cart.class)
-                        .build();
+                .setQuery(cartListRef.child("User View")
+                .child(Prevalent.currentonlineusers.getEmail())
+                        .child("Products"),Cart.class).build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter =
                 new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
@@ -95,8 +95,9 @@ public class CartActivity extends AppCompatActivity {
                         try {
 
 
+
                             cartViewHolder.txtProductQuantity.setText("Quantity = " + model.getQuantity());
-                            cartViewHolder.txtProductPrice.setText("Price = R" + model.getPrice());
+                            cartViewHolder.txtProductPrice.setText("Price = R" + model.getPrice() + "$");
                             cartViewHolder.txtProductName.setText(model.getPname());
 
 
@@ -105,9 +106,6 @@ public class CartActivity extends AppCompatActivity {
                         } catch(NumberFormatException e){
                             return;
                         }
-
-
-
 
 
                         cartViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -125,19 +123,18 @@ public class CartActivity extends AppCompatActivity {
 
                                 builder.setItems(options, new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        if (which==0){
+                                    public void onClick(DialogInterface dialog, int i) {
+                                        if (i==0){
                                             Intent intent = new Intent(CartActivity.this,ProductDetailsActivity.class);
                                             intent.putExtra("pid",model.getPid());
                                             startActivity(intent);
                                         }
 
-                                        if (which==1){
-                                            cartListRef.child("UserView")
-                                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        if (i==1){
+                                            cartListRef.child("User View")
+                                                    .child(Prevalent.currentonlineusers.getEmail())
                                                     .child("Products")
-                                                    .child(model.getPid())
-                                                    .removeValue()
+                                                    .child(model.getPid()).removeValue()
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {

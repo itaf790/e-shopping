@@ -105,18 +105,12 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void updateOnlyUserInfo() {
+        DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("Users");
 
         HashMap<String,Object> userMap = new HashMap<>();
         userMap.put("name",nameEditText.getText().toString());
         userMap.put("email",emailEditText.getText().toString());
-         FirebaseDatabase.getInstance().getReference("SettingsUsersInfo")
-        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).updateChildren(userMap);
-
-
-
-
-
-
+        ref.child(Prevalent.currentonlineusers.getEmail()).updateChildren(userMap);
 
         startActivity(new Intent(SettingsActivity.this,HomeActivity.class));
         Toast.makeText(SettingsActivity.this, "Profile info updated successfully", Toast.LENGTH_SHORT).show();
@@ -129,9 +123,11 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode==RESULT_OK && data!=null){
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             imageUri = result.getUri();
+
             profileImageView.setImageURI(imageUri);
         }
         else{
@@ -145,9 +141,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(nameEditText.getText().toString())){
             Toast.makeText(this, "Name is mandatory", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(emailEditText.getText().toString())){
+        }
+        else if (TextUtils.isEmpty(emailEditText.getText().toString())){
             Toast.makeText(this, "Email is mandatory", Toast.LENGTH_SHORT).show();
-        } else if (checker.equals("clicked")){
+        }
+        else if (checker.equals("clicked")){
             uploadImage();
         }
     }
@@ -187,12 +185,13 @@ public class SettingsActivity extends AppCompatActivity {
                         userMap.put("email",emailEditText.getText().toString());
                         userMap.put("name",nameEditText.getText().toString());
                         userMap.put("image",myUrl);
+                        ref.child(Prevalent.currentonlineusers.getEmail()).updateChildren(userMap);
 
                         progressDialog.dismiss();
 
 
 
-                        startActivity(new Intent(SettingsActivity.this,MainActivity.class));
+                        startActivity(new Intent(SettingsActivity.this, HomeActivity.class));
                         Toast.makeText(SettingsActivity.this, "Profile info updated successfully", Toast.LENGTH_SHORT).show();
                         finish();
 

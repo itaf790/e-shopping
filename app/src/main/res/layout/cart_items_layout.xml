@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardElevation="15dp">
+    app:cardElevation="15dp"
+    >
 
     <RelativeLayout
-        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="20dp">
 
         <TextView
             android:id="@+id/cart_product_name"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:text="other pname"
+            android:text="Product Name"
             android:textColor="@android:color/white"
             android:textSize="14dp"
             android:layout_marginLeft="5dp"
@@ -29,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="5dp"
-            android:text="product quantity"
+            android:text="Product Quantity"
             android:textAlignment="viewEnd"
             android:textColor="@android:color/white"
             android:textSize="14dp"
@@ -41,7 +43,7 @@
             android:id="@+id/cart_product_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="product price"
+            android:text="Product Price"
             android:textColor="@android:color/white"
             android:textSize="14dp"
             android:textStyle="bold"
