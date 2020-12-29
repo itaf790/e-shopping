@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.app.e_shopping.Prevalent.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,7 +34,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_confirm_final_order);
 
         totalAmount = getIntent().getStringExtra("Total Price");
-        Toast.makeText(this, "Total Price = R" + totalAmount, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Total Price = " + totalAmount, Toast.LENGTH_SHORT).show();
 
         confirmOrderBtn = (Button) findViewById(R.id.confirm_final_order);
         nameEditText = (EditText) findViewById(R.id.shipment_name);
@@ -92,8 +93,8 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         ordersMap.put("time",saveCurrentTime);
         ordersMap.put("state","not shipped");
 
-        FirebaseDatabase.getInstance().getReference("Orders")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+        FirebaseDatabase.getInstance().getReference().child("Cart List")
+                .child("User View").child(Prevalent.currentonlineusers.getEmail()).child("Orders")
                 .updateChildren(ordersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

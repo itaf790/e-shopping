@@ -15,8 +15,12 @@
 
         <activity android:name=".AdminUserProductsActivity" />
         <activity android:name=".AdminNewOrdersActivity" />
-        <activity android:name=".ConfirmFinalOrderActivity" />
-        <activity android:name=".CartActivity" />
+        <activity android:name=".ConfirmFinalOrderActivity"
+            android:parentActivityName=".CartActivity"/>
+
+        <activity android:name=".CartActivity"
+            android:parentActivityName=".HomeActivity"/>
+
         <activity android:name=".ProductDetailsActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".AdminCategoryActivity" />

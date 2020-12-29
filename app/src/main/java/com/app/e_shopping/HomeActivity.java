@@ -82,11 +82,11 @@ public class HomeActivity extends AppCompatActivity
         ////
 
         View headerView = navigationView.getHeaderView(0);
-        TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
+        TextView userNameTextView = findViewById(R.id.user_profile_name);
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
-        userNameTextView.setText(Prevalent.currentonlineusers.getName());
-        Picasso.get().load(Prevalent.currentonlineusers.getImage()).placeholder(R.drawable.profile);
+       // userNameTextView.setText(Prevalent.currentonlineusers.getName());
+       // Picasso.get().load(Prevalent.currentonlineusers.getImage()).placeholder(R.drawable.profile);
 
 
 

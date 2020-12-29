@@ -61,7 +61,7 @@ public class CartActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 try {
-                    txtTotalAmount.setText("Total Price = R" + String.valueOf(overTotalPrice));
+                    txtTotalAmount.setText("Total Price = " + String.valueOf(overTotalPrice));
 
                 } catch (NumberFormatException e){
                     return;
@@ -97,7 +97,7 @@ public class CartActivity extends AppCompatActivity {
 
 
                             cartViewHolder.txtProductQuantity.setText("Quantity = " + model.getQuantity());
-                            cartViewHolder.txtProductPrice.setText("Price = R" + model.getPrice() + "$");
+                            cartViewHolder.txtProductPrice.setText("Price = " + model.getPrice() + " $");
                             cartViewHolder.txtProductName.setText(model.getPname());
 
 
@@ -175,15 +175,16 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void checkOrderState(){
-        FirebaseDatabase.getInstance().getReference("Orders")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+        final DatabaseReference Ref= FirebaseDatabase.getInstance().getReference().child("Cart List");
+        Ref.child("User View").child(Prevalent.currentonlineusers.getEmail()).child("Products")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()){
-                            String shippingState = dataSnapshot.child("state").getValue().toString();
-                            String userName = dataSnapshot.child("name").getValue().toString();
+                            String shippingState = (String) dataSnapshot.child("state").getValue();
+                            String userName = (String) dataSnapshot.child("name").getValue();
 
+                            if (shippingState != null){
                             if (shippingState.equals("shipped")){
 
                                 txtTotalAmount.setText("Dear " + userName + "\n order is shipped successfully.");
@@ -201,7 +202,7 @@ public class CartActivity extends AppCompatActivity {
                                 Toast.makeText(CartActivity.this, "You can purchase more products once you receive your first order", Toast.LENGTH_SHORT).show();
 
 
-                            }
+                            }}
 
                         }
 

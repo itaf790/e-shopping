@@ -204,19 +204,24 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange( DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()){
-                           String shippingState = dataSnapshot.child("category").getValue().toString();
-
-                           if (shippingState.equals("shipped")){
-
-                                state = "Order Shipped";
 
 
-                            } else if (shippingState.equals("not shipped")){
+                           String shippingState = (String) dataSnapshot.child("state").getValue();
+                                   String shipping = "shipped";
+                                   if (shippingState != null) {
+                                       if (shippingState.equals("shipped")) {
 
-                                state = "Order Placed";
+                                           state = "Order Shipped";
 
 
-                            }
+                                       } else if (shippingState.equals("not shipped")) {
+
+                                           state = "Order Placed";
+
+
+                                       }
+
+                                   }
 
                         }
 
