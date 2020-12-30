@@ -111,9 +111,6 @@ public class register extends AppCompatActivity {
                         }
                     });
 
-
-
-
                 } else {
                     Toast.makeText(register.this, "This" + email + "already exists", Toast.LENGTH_SHORT).show();
                 loadingBar.dismiss();

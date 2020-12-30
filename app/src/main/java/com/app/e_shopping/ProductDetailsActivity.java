@@ -55,6 +55,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productPrice = (TextView) findViewById(R.id.product_price_details);
         productDescription = (TextView) findViewById(R.id.product_description_details);
         productName = (TextView) findViewById(R.id.product_name_details);
+        productID=getIntent().getStringExtra("pid");
+
 
         getProductDetails(productID);
 
@@ -63,7 +65,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 addingToCartList();
 
-                if (state.equals("Order Placed") || state.equals("Order Shipped")){
+                if (state.equals("AdminOrders Placed") || state.equals("AdminOrders Shipped")){
                     Toast.makeText(ProductDetailsActivity.this, "you can purchase more products once your order is purchased or confirmed.", Toast.LENGTH_LONG).show();
                 }
                 else{
@@ -101,22 +103,21 @@ public class ProductDetailsActivity extends AppCompatActivity {
             cartMap.put("quantity",numberButton.getNumber());
             cartMap.put("discount","");
 
-            cartListRef.child("User View").child(Prevalent.currentonlineusers.getEmail()).child("Products")
-                    .child(productID).updateChildren(cartMap)
+            cartListRef.child("User View").child(Prevalent.currentonlineusers.getEmail())
+                    .child("Products").child(productID).updateChildren(cartMap)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful())
-                            {
+                            if (task.isSuccessful()) {
                                 cartListRef.child("Admin View").child(Prevalent.currentonlineusers.getEmail()).child("Products")
                                         .child(productID).updateChildren(cartMap)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()){
+                                                if (task.isSuccessful()) {
 
-                                                 //   Toast.makeText(ProductDetailsActivity.this, "Added To Cart List", Toast.LENGTH_SHORT).show();
-                                                    Intent intent= new Intent(ProductDetailsActivity.this,HomeActivity.class);
+                                                    Toast.makeText(ProductDetailsActivity.this, "Added To Cart List", Toast.LENGTH_SHORT).show();
+                                                    Intent intent = new Intent(ProductDetailsActivity.this, HomeActivity.class);
                                                     startActivity(intent);
                                                 }
                                             }
@@ -129,35 +130,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     });
 
 
-///////////////////////////////////////////
-
-
-       final DatabaseReference ListRef= FirebaseDatabase.getInstance().getReference().child("Cart List");
-      ListRef.child("User View").child(Prevalent.currentonlineusers.getEmail()).child("Products")
-                .child(productID).updateChildren(cartMap)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful())
-                            {
-                                ListRef.child("User View").child(Prevalent.currentonlineusers.getEmail()).child("Products")
-                                        .child(productID).updateChildren(cartMap)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()){
-                                                    Toast.makeText(ProductDetailsActivity.this, "Added to Cart List", Toast.LENGTH_SHORT).show();
-                                                    Intent intent = new Intent(ProductDetailsActivity.this,HomeActivity.class);
-                                                    startActivity(intent);
-                                                }
-                                            }
-                                        });
-
-
-
-                            }
-                        }
-                    });
+///////////////////////////////////////////delete user view
 
         }
 
@@ -194,10 +167,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         });
     }
     private void checkOrderState(){
-        final DatabaseReference ordersRef= FirebaseDatabase.getInstance().getReference().child("Cart List");
-
-        ordersRef.child("User View").child(Prevalent.currentonlineusers.getEmail()).child("Products")
-                .child(productID).addValueEventListener(new ValueEventListener() {
+        final DatabaseReference ordersRef= FirebaseDatabase.getInstance().getReference().child("AdminOrders").child(Prevalent.currentonlineusers.getEmail());
+               ordersRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange( DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()){

@@ -15,12 +15,8 @@
         <activity android:name=".SearchProductsActivity"></activity>
         <activity android:name=".AdminUserProductsActivity" />
         <activity android:name=".AdminNewOrdersActivity" />
-        <activity
-            android:name=".ConfirmFinalOrderActivity"
-            android:parentActivityName=".HomeActivity" />
-        <activity
-            android:name=".CartActivity"
-            android:parentActivityName=".HomeActivity" />
+        <activity android:name=".ConfirmFinalOrderActivity" />
+        <activity android:name=".CartActivity" />
         <activity android:name=".ProductDetailsActivity"
             android:parentActivityName=".HomeActivity"/>
         <activity android:name=".SettingsActivity" />
@@ -31,7 +27,7 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity android:name=".MainActivity" />
         <activity
             android:name=".splash"

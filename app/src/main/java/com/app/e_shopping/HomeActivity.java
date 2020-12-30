@@ -79,11 +79,12 @@ public class HomeActivity extends AppCompatActivity
         //////
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
        ActionBarDrawerToggle toggle= new ActionBarDrawerToggle(
           this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
          drawer.addDrawerListener(toggle);
          toggle.syncState();
+
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -91,12 +92,15 @@ public class HomeActivity extends AppCompatActivity
 
         View headerView = navigationView.getHeaderView(0);
         TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
-      // CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
-        userNameTextView.setText(Prevalent.currentonlineusers.getName());
+        CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
-        Picasso.get().load(Prevalent.currentonlineusers.getImage()).placeholder(R.drawable.profile);
+        // CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
+        if(!type.equals("Admin")) {
+            userNameTextView.setText(Prevalent.currentonlineusers.getName());
 
+            Picasso.get().load(Prevalent.currentonlineusers.getImage()).placeholder(R.drawable.profile);
+        }
 
 
         recyclerView=findViewById(R.id.recycler_menu);

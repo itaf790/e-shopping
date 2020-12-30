@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnjoin, btnlogin;
     private ProgressDialog loadingBar;
+    private int STORAGE_PERMISSION_CODE=1;
+
 
 
     @Override
