@@ -32,8 +32,7 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_new_orders);
 
-        ordersRef = FirebaseDatabase.getInstance().getReference("Orders");
-
+        ordersRef = FirebaseDatabase.getInstance().getReference().child("AdminOrders");
         ordersList = findViewById(R.id.orders_list);
         ordersList.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -53,7 +52,7 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
                     protected void onBindViewHolder(@NonNull AdminOrdersViewHolder holder, final int position, @NonNull final AdminOrders model) {
                         holder.userName.setText("Name: " + model.getName());
                         holder.userPhoneNumber.setText("Phone: " + model.getPhone());
-                        holder.userTotalPrice.setText("Total Amount = R: " + model.getTotalAmount());
+                        holder.userTotalPrice.setText("Total Amount = $: " + model.getTotalAmount());
                         holder.userDateTime.setText("Order at: " + model.getDate() + " " + model.getTime());
                         holder.userShippingAddress.setText("Shipping Address: " + model.getAddress() + ", " + model.getCity());
 
@@ -79,12 +78,12 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
                                         };
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(AdminNewOrdersActivity.this);
-                                builder.setTitle("have you shipped this order products?");
+                                builder.setTitle("Have you shipped this order products?");
                                 builder.setItems(options, new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int which) {
+                                    public void onClick(DialogInterface dialog, int i) {
 
-                                        if (which == 0){
+                                        if (i == 0){
 
                                             String uID = getRef(position).getKey();
 
@@ -125,6 +124,7 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
 
         public AdminOrdersViewHolder(@NonNull View itemView) {
             super(itemView);
+
             userName = itemView.findViewById(R.id.order_user_name);
             userPhoneNumber = itemView.findViewById(R.id.order_phone_number);
             userTotalPrice = itemView.findViewById(R.id.order_total_price);
@@ -137,8 +137,7 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
     }
 
     private void removeOrder(String uID) {
-
-        FirebaseDatabase.getInstance().getReference("Orders").child(uID).removeValue();
+        ordersRef.child(uID).removeValue();
 
     }
 }

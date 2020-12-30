@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CartActivity">
+    tools:context=".CartActivity"
+    android:background="@color/background">
 
     <RelativeLayout
         android:id="@+id/r11"
@@ -41,7 +42,6 @@
         android:text="Congratulations, your final order has been placed successfully.Soon you will be verified "
         android:textSize="20dp"
         android:visibility="gone"
-
         android:gravity="center_horizontal" />
 
     <androidx.recyclerview.widget.RecyclerView

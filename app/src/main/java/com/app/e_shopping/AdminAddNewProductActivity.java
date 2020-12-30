@@ -52,6 +52,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         categoryName = getIntent().getExtras().get("category").toString();
         productImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
         productsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+
         addNewProductButton = (Button) findViewById(R.id.add_new_product);
         inputProductImage = (ImageView) findViewById(R.id.select_product_image);
         inputProductName = (EditText) findViewById(R.id.product_name);
@@ -179,7 +180,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()){
                             downLoadImageUrl = task.getResult().toString();
-                            Toast.makeText(AdminAddNewProductActivity.this, "ot the Product image Url Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminAddNewProductActivity.this, "got the Product image Url Successfully", Toast.LENGTH_SHORT).show();
 
                             saveProductInfoToDatabase();
                         }

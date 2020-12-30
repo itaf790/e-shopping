@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConfirmFinalOrderActivity">
+    tools:context=".ConfirmFinalOrderActivity"
+    android:background="@color/background">
 
 
     <RelativeLayout
@@ -41,17 +42,17 @@
         android:gravity="center_horizontal" />
 
 
-
     <EditText
         android:id="@+id/shipment_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txt"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
         android:hint="your_name"
-        />
+        android:textColor="#000000"
+        android:textColorHint="#000000" />
     <EditText
         android:id="@+id/shipment_phone_number"
         android:layout_width="match_parent"
@@ -62,6 +63,8 @@
         android:layout_marginRight="20dp"
         android:inputType="number"
         android:hint="your_phone_number"
+        android:textColorHint="#000000"
+        android:textColor="#000000"
         />
     <EditText
         android:id="@+id/shipment_address"
@@ -72,6 +75,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="Your Home Address"
+        android:textColorHint="#000000"
+        android:textColor="#000000"
         />
 
     <EditText
@@ -83,18 +88,20 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="Your Home City"
+        android:textColorHint="#000000"
+        android:textColor="#000000"
         />
 
     <Button
         android:id="@+id/confirm_final_order"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
         android:text="confirm"
         android:background="@color/colorPrimaryDark"
         android:textColor="@android:color/white"
         android:textSize="20dp"
+        android:layout_marginTop="500dp"
+        android:layout_centerHorizontal="true"
         />
 
 </RelativeLayout>

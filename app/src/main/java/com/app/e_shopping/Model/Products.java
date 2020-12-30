@@ -32,7 +32,7 @@ public class Products {
         return description;
     }
 
-    public void setDesc(String desc) {
+    public void setDescription(String desc) {
         this.description = desc;
     }
 

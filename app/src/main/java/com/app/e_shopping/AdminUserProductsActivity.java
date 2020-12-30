@@ -14,29 +14,33 @@ import com.app.e_shopping.Model.Cart;
 import com.app.e_shopping.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminUserProductsActivity extends AppCompatActivity {
 
     private RecyclerView productsList;
     RecyclerView.LayoutManager layoutManager;
-    private String userId = "";
+    private String userID = "";
+    private DatabaseReference cartListRef;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_user_products);
-        userId =  getIntent().getStringExtra("uid");
+
+
+        userID =  getIntent().getStringExtra("uid");
         productsList = findViewById(R.id.products_list);
         productsList.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         productsList.setLayoutManager(layoutManager);
 
 
+        cartListRef= FirebaseDatabase.getInstance().getReference()
+                .child("Cart List").child("Admin View").child(userID).child("Products");
 
-        FirebaseDatabase.getInstance()
-                .getReference("CartList").child("AdminView").child(userId).child("Products");
     }
 
     @Override
@@ -45,9 +49,7 @@ public class AdminUserProductsActivity extends AppCompatActivity {
 
         FirebaseRecyclerOptions<Cart> options =
                 new  FirebaseRecyclerOptions.Builder<Cart>()
-                .setQuery(FirebaseDatabase.getInstance()
-                        .getReference("CartList").child("AdminView").child(userId).child("Products"),Cart.class)
-                .build();
+                .setQuery(cartListRef,Cart.class).build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override

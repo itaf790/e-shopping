@@ -34,15 +34,11 @@ public class login extends AppCompatActivity {
     private Button loginbutton;
     private ProgressDialog loadingBar;
     private TextView AdminLink, NotAdminLink;
-
-
     private String parentDbName="Users";
 
 
-
-
-    //private CheckBox checkBoxrememberme;
-     private CheckBox remember;
+    private com.rey.material.widget.CheckBox chkBoxRememberMe;
+    private MainActivity mainActivity=new MainActivity();
 
 
     @Override
@@ -57,17 +53,10 @@ public class login extends AppCompatActivity {
         NotAdminLink= (TextView)findViewById(R.id.not_admin);
         loadingBar= new ProgressDialog(this);
 
-      //  remember= findViewById(R.id.remember);
 
-     //  checkBoxrememberme = (CheckBox)findViewById(R.id.remember);
-       // Paper.init(this);
+        chkBoxRememberMe = findViewById(R.id.remember);
+        Paper.init(this);;
 
-//        SharedPreferences preferences= getSharedPreferences("checkbox",MODE_PRIVATE);
-  //     String checkbox= preferences.getString("remember","");
-    //   if (checkbox.equals("true")){
-      //     Intent intent= new Intent(login.this,HomeActivity.class);}
-      // else if (checkbox.equals("false")){
-       //    Toast.makeText(this, "Please Sign In", Toast.LENGTH_SHORT).show();}
         
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,32 +87,10 @@ public class login extends AppCompatActivity {
             }
         });
 
-
-
-
-       ////////////////////////////////////
-// remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-   // @Override
-    //public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-      //  if (buttonView.isChecked()){
-        //    SharedPreferences preferences= getSharedPreferences("checkbox",MODE_PRIVATE);
-// SharedPreferences.Editor editor= preferences.edit();
-// editor.putString("remember","true");
-// editor.apply();
-// Toast.makeText(login.this,"Checked",Toast.LENGTH_SHORT).show();}
-
-       // else if (!buttonView.isChecked()){
-
-         //   SharedPreferences preferences= getSharedPreferences("checkbox",MODE_PRIVATE);
-           // SharedPreferences.Editor editor= preferences.edit();
-            //editor.putString("remember","false");
-            // editor.apply();
-            //Toast.makeText(login.this,"UnChecked",Toast.LENGTH_SHORT).show();
-        //}
-    //}
-// });
-
     }
+
+
+
 
     private void LoginUser() {
         String email= inputemail.getText().toString() ;
@@ -149,12 +116,11 @@ public class login extends AppCompatActivity {
 
     private void AllowAccessToAccount(final String email, final String password) {
 ///// hay ll remember me
-      //if (checkBoxrememberme.isChecked()) {
-
-         //   Paper.book().write(Prevalent.UserEmailKey,email);
-       //     Paper.book().write(Prevalent.UserPasswordKey,password);
-     //  }
-
+        if(chkBoxRememberMe.isChecked())
+        {
+            Paper.book().write(Prevalent.UserEmailKey, email);
+            Paper.book().write(Prevalent.UserPasswordKey, password);
+        }
 
         final DatabaseReference RootRef;
         RootRef= FirebaseDatabase.getInstance().getReference();

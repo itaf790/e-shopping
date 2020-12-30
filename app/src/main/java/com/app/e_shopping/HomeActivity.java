@@ -44,13 +44,19 @@ public class HomeActivity extends AppCompatActivity
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
     private AppBarConfiguration mAppBarConfiguration;
-    RecyclerView.LayoutManager layoutManager;
+    private String type="";
+  RecyclerView.LayoutManager layoutManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Intent intent=getIntent();
+        Bundle bundle=intent.getExtras();
+        if(bundle!=null){
+            type= getIntent().getExtras().get("Admin").toString();}
 
         ProductsRef= FirebaseDatabase.getInstance().getReference().child("Products");
 
@@ -65,28 +71,31 @@ public class HomeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!type.equals("Admin")){
               Intent intent= new Intent(HomeActivity.this, CartActivity.class);
               startActivity(intent);
-            }
+            }}
         });
         //////
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-      //  ActionBarDrawerToggle toggle= new ActionBarDrawerToggle(this,drawer,toolbar,"Open Navigation Drawer","Close Navigation Drawer");
-         // drawer.addDrawerListener(toggle);
-        // toggle.syncState();
+       ActionBarDrawerToggle toggle= new ActionBarDrawerToggle(
+          this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+         drawer.addDrawerListener(toggle);
+         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         ////
 
         View headerView = navigationView.getHeaderView(0);
-        TextView userNameTextView = findViewById(R.id.user_profile_name);
-        CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
+        TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
+      // CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
-       // userNameTextView.setText(Prevalent.currentonlineusers.getName());
-       // Picasso.get().load(Prevalent.currentonlineusers.getImage()).placeholder(R.drawable.profile);
+        userNameTextView.setText(Prevalent.currentonlineusers.getName());
+
+        Picasso.get().load(Prevalent.currentonlineusers.getImage()).placeholder(R.drawable.profile);
 
 
 
@@ -133,6 +142,7 @@ public class HomeActivity extends AppCompatActivity
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+
                                 Intent intent= new Intent(HomeActivity.this, ProductDetailsActivity.class);
                                 intent.putExtra("pid", model.getPid());
                                 startActivity(intent);
@@ -200,11 +210,14 @@ public class HomeActivity extends AppCompatActivity
         {
             Paper.book().destroy();
             Intent intent= new Intent(HomeActivity.this,CartActivity.class);
-            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-          //  finish();
         }
-        else  if (id==R.id.nav_orders){
+        else  if (id==R.id.nav_search){
+
+            Intent intent= new Intent(HomeActivity.this,SearchProductsActivity.class);
+
+            startActivity(intent);
+
 
         }
         else if (id==R.id.nav_categories){
@@ -222,4 +235,5 @@ public class HomeActivity extends AppCompatActivity
 
         return false;
     }
+
 }

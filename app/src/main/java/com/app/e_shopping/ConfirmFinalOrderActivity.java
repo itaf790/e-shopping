@@ -15,6 +15,7 @@ import com.app.e_shopping.Prevalent.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
@@ -83,6 +84,9 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         saveCurrentTime = currentTime.format(calForDate.getTime());
 
 
+
+        final DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference().child("AdminOrders")
+                .child(Prevalent.currentonlineusers.getEmail());
         HashMap<String, Object> ordersMap = new HashMap<>();
         ordersMap.put("totalAmount",totalAmount);
         ordersMap.put("name",nameEditText.getText().toString());
@@ -93,16 +97,15 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         ordersMap.put("time",saveCurrentTime);
         ordersMap.put("state","not shipped");
 
-        FirebaseDatabase.getInstance().getReference().child("Cart List")
-                .child("User View").child(Prevalent.currentonlineusers.getEmail()).child("Orders")
-                .updateChildren(ordersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        ordersRef.updateChildren(ordersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+
                 if (task.isSuccessful())
                 {
-                    FirebaseDatabase.getInstance().getReference("CartList")
-                            .child("UserView")
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    FirebaseDatabase.getInstance().getReference("Cart List")
+                            .child("User View")
+                            .child(Prevalent.currentonlineusers.getEmail())
                             .removeValue()
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -119,6 +122,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
                 }
             }
         });
+
 
 
 

@@ -115,7 +115,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()){
 
-                                                    Toast.makeText(ProductDetailsActivity.this, "Added To Cart List", Toast.LENGTH_SHORT).show();
+                                                 //   Toast.makeText(ProductDetailsActivity.this, "Added To Cart List", Toast.LENGTH_SHORT).show();
                                                     Intent intent= new Intent(ProductDetailsActivity.this,HomeActivity.class);
                                                     startActivity(intent);
                                                 }
@@ -167,16 +167,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
 
     private void getProductDetails(String productID) {
-        final DatabaseReference productsRef= FirebaseDatabase.getInstance().getReference().child("Cart List");
-
-        productsRef.child("User View").child(Prevalent.currentonlineusers.getEmail()).child("Products")
-                .child(productID).addValueEventListener(new ValueEventListener() {
+        final DatabaseReference productsRef= FirebaseDatabase.getInstance().getReference().child("Products");
+        productsRef.child(productID).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange( DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()){
                     Products products = dataSnapshot.getValue(Products.class);
-
 
                     productName.setText(products.getPname());
                     productPrice.setText(products.getPrice());
@@ -207,7 +204,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
 
                            String shippingState = (String) dataSnapshot.child("state").getValue();
-                                   String shipping = "shipped";
+
                                    if (shippingState != null) {
                                        if (shippingState.equals("shipped")) {
 

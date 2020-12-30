@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.e_shopping">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,26 +12,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".SearchProductsActivity"></activity>
         <activity android:name=".AdminUserProductsActivity" />
         <activity android:name=".AdminNewOrdersActivity" />
-        <activity android:name=".ConfirmFinalOrderActivity"
-            android:parentActivityName=".CartActivity"/>
-
-        <activity android:name=".CartActivity"
+        <activity
+            android:name=".ConfirmFinalOrderActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".CartActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity android:name=".ProductDetailsActivity"
             android:parentActivityName=".HomeActivity"/>
-
-        <activity android:name=".ProductDetailsActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".AdminCategoryActivity" />
         <activity android:name=".AdminAddNewProductActivity" />
         <activity android:name=".register" />
         <activity android:name=".login" />
-        <activity android:name=".HomeActivity"
+        <activity
+            android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity"/>
-
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".splash"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -46,6 +47,5 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
     </application>
-
 
 </manifest>

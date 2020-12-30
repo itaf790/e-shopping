@@ -77,6 +77,12 @@ public class CartActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        overTotalPrice=0;
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         checkOrderState();
@@ -93,8 +99,6 @@ public class CartActivity extends AppCompatActivity {
                     @Override
                     protected void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int position, @NonNull final Cart model) {
                         try {
-
-
 
                             cartViewHolder.txtProductQuantity.setText("Quantity = " + model.getQuantity());
                             cartViewHolder.txtProductPrice.setText("Price = " + model.getPrice() + " $");
@@ -114,8 +118,8 @@ public class CartActivity extends AppCompatActivity {
                                 CharSequence options[] = new CharSequence[]
                                         {
 
-                                                "Edit",
-                                                "Delete"
+                                                "Edit Quantity",
+                                                "Delete from Cart"
                                 };
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
@@ -175,9 +179,11 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void checkOrderState(){
-        final DatabaseReference Ref= FirebaseDatabase.getInstance().getReference().child("Cart List");
-        Ref.child("User View").child(Prevalent.currentonlineusers.getEmail()).child("Products")
-                .addValueEventListener(new ValueEventListener() {
+         DatabaseReference ordersRef;
+         ordersRef= FirebaseDatabase.getInstance().getReference().child("AdminOrders")
+        .child(Prevalent.currentonlineusers.getEmail());
+
+                ordersRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()){

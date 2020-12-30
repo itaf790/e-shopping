@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_image_details"
-        android:text="product name"
+
         android:textColor="@android:color/black"
         android:textStyle="bold"
         android:textSize="18sp"
