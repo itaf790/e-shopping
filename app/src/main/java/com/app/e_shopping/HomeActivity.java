@@ -22,9 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -95,10 +97,8 @@ public class HomeActivity extends AppCompatActivity
 
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
-        // CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
         if(!type.equals("Admin")) {
             userNameTextView.setText(Prevalent.currentonlineusers.getName());
-
             Picasso.get().load(Prevalent.currentonlineusers.getImage()).placeholder(R.drawable.profile);
         }
 
@@ -112,7 +112,7 @@ public class HomeActivity extends AppCompatActivity
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_search, R.id.nav_logout, R.id.nav_setting, R.id.nav_cart)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -121,6 +121,40 @@ public class HomeActivity extends AppCompatActivity
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                int menuId = destination.getId();
+                switch (menuId){
+                    case R.id.nav_search:
+                        Intent intent= new Intent(HomeActivity.this,SearchProductsActivity.class);
+                        startActivity(intent);
+                    break;
+
+                    case R.id.nav_logout:
+                        Paper.book().destroy();
+                        Intent logintent= new Intent(HomeActivity.this,MainActivity.class);
+                        startActivity(logintent);
+                        finish();
+                        break;
+
+                    case R.id.nav_setting:
+                        Intent settingintent= new Intent(HomeActivity.this,SettingsActivity.class);
+                        startActivity(settingintent);
+                        break;
+
+                    case R.id.nav_cart:
+                        Paper.book().destroy();
+                        Intent cartintent= new Intent(HomeActivity.this,CartActivity.class);
+                        startActivity(cartintent);
+                         break;
+
+                }
+
+
+            }
+        });
     }
 
     ///// hay ll product
@@ -224,9 +258,7 @@ public class HomeActivity extends AppCompatActivity
 
 
         }
-        else if (id==R.id.nav_categories){
 
-        }
         else if (id==R.id.nav_setting){
             Intent intent= new Intent(HomeActivity.this,SettingsActivity.class);
             startActivity(intent);
@@ -234,10 +266,16 @@ public class HomeActivity extends AppCompatActivity
         }
         else if (id==R.id.nav_logout){
 
+            Paper.book().destroy();
+            Intent intent= new Intent(HomeActivity.this,MainActivity.class);
+            startActivity(intent);
+            finish();
         }
 
 
-        return false;
+        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
 }

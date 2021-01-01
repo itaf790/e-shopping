@@ -24,56 +24,54 @@ import com.squareup.picasso.Picasso;
 
 public class SearchProductsActivity extends AppCompatActivity {
 
-    private Button SearchBtn;
+    private Button searchBtn;
     private EditText inputText;
     private RecyclerView searchList;
-    private String Searchinput;
+    private String searchString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_products);
 
-        SearchBtn = findViewById(R.id.search_btn);
-        inputText= findViewById(R.id.search_product_name);
-        searchList= findViewById(R.id.serach_list);
+        searchBtn=findViewById(R.id.search_btn);
+        inputText=findViewById(R.id.search_product_name);
+        searchList=findViewById(R.id.search_list);
         searchList.setLayoutManager(new LinearLayoutManager(SearchProductsActivity.this));
-
-        searchList.setOnClickListener(new View.OnClickListener() {
+        searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Searchinput = inputText.getText().toString();
+                searchString=inputText.getText().toString();
                 onStart();
             }
         });
-
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
 
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Products");
-        FirebaseRecyclerOptions<Products> options= new  FirebaseRecyclerOptions.Builder<Products>()
-                .setQuery(reference.orderByChild("pname").startAt(Searchinput).endAt(Searchinput), Products.class).build();
 
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter;
-        adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>()
+                .setQuery(reference.orderByChild("pname").startAt(searchString).endAt(searchString),Products.class)
+                .build();
+        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-
+            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull final Products model) {
                 holder.txtProductName.setText(model.getPname());
                 holder.txtProductDesc.setText(model.getDescription());
-                holder.txtProductPrice.setText("Price = " +model.getPrice() +"$");
+                holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
                 Picasso.get().load(model.getImage()).into(holder.imageView);
-
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent= new Intent(SearchProductsActivity.this, ProductDetailsActivity.class);
-                        intent.putExtra("pid", model.getPid());
-                        startActivity(intent);
+                        Intent productDetailsIntent = new Intent(SearchProductsActivity.this,ProductDetailsActivity.class);
+                        productDetailsIntent.putExtra("pid",model.getPid());
+                        startActivity(productDetailsIntent);
+
                     }
                 });
             }
@@ -81,12 +79,12 @@ public class SearchProductsActivity extends AppCompatActivity {
             @NonNull
             @Override
             public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout,parent, false);
-                ProductViewHolder holder= new ProductViewHolder(view);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
+                ProductViewHolder holder = new ProductViewHolder(view);
                 return holder;
             }
         };
         searchList.setAdapter(adapter);
-
+        adapter.startListening();
     }
 }

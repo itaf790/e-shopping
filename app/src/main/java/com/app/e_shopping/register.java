@@ -26,8 +26,8 @@ public class register extends AppCompatActivity {
 
     private Button createaccount;
     private EditText inputname, inputemail, inputpass;
-    //// firebase
     private ProgressDialog loadingBar;
+    private MainActivity mainActivity=new MainActivity();
 
 
     @Override
@@ -81,8 +81,10 @@ public class register extends AppCompatActivity {
         final DatabaseReference RootRef;
         RootRef= FirebaseDatabase.getInstance().getReference();
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 if (!(snapshot.child("Users").child(email).exists())) {
                     HashMap<String, Object> userdataMap= new HashMap<>();
                     userdataMap.put("name",name);
@@ -97,7 +99,7 @@ public class register extends AppCompatActivity {
                                 Toast.makeText(register.this, "Congratulations, your account has been created", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
-                                Intent intent = new Intent(register.this,login.class);
+                                Intent intent = new Intent(register.this,HomeActivity.class);
                                 startActivity(intent);
                             }
 
@@ -114,8 +116,8 @@ public class register extends AppCompatActivity {
                 } else {
                     Toast.makeText(register.this, "This" + email + "already exists", Toast.LENGTH_SHORT).show();
                 loadingBar.dismiss();
-                    Toast.makeText(register.this, "Please etry again using another email", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(register.this, login.class);
+                    Toast.makeText(register.this, "Please try again using another email", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(register.this, MainActivity.class);
                     startActivity(intent);
                 }
 
