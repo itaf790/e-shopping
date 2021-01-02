@@ -1,4 +1,4 @@
-package com.app.e_shopping;
+package com.app.e_shopping.Admin;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.e_shopping.Model.Cart;
+import com.app.e_shopping.R;
 import com.app.e_shopping.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SettingsActivity extends AppCompatActivity {
     private CircleImageView profileImageView;
-    private EditText fullNameEditText, userPhoneEditText, addressEditText;
+    private EditText fullNameEditText, userEmailEditText, addressEditText;
     private TextView profileChangeTextBtn,  closeTextBtn, saveTextButton;
 
     private Uri imageUri;
@@ -44,6 +45,7 @@ public class SettingsActivity extends AppCompatActivity {
     private StorageTask uploadTask;
     private StorageReference storageProfilePrictureRef;
     private String checker = "";
+    private Button securityQuestionbtn;
 
 
     @Override
@@ -55,14 +57,15 @@ public class SettingsActivity extends AppCompatActivity {
         storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Profile pictures");
         profileImageView = (CircleImageView) findViewById(R.id.settings_profile_image);
         fullNameEditText = (EditText) findViewById(R.id.settings_full_name);
-        userPhoneEditText = (EditText) findViewById(R.id.settings_email);
+        userEmailEditText = (EditText) findViewById(R.id.settings_email);
         addressEditText = (EditText) findViewById(R.id.settings_address);
         profileChangeTextBtn = (TextView) findViewById(R.id.profile_image_change_btn);
         closeTextBtn = (TextView) findViewById(R.id.close_settings_btn);
         saveTextButton = (TextView) findViewById(R.id.update_account_settings_btn);
+        securityQuestionbtn = findViewById(R.id.security_ques_btn);
 
 
-        userInfoDisplay(profileImageView, fullNameEditText, userPhoneEditText, addressEditText);
+        userInfoDisplay(profileImageView, fullNameEditText, userEmailEditText, addressEditText);
 
 
         closeTextBtn.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +73,14 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 finish();
+            }
+        });
+        securityQuestionbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, ResetPasswordActivity.class);
+                intent.putExtra("check", "settings");
+                startActivity(intent);
             }
         });
 
@@ -113,7 +124,7 @@ public class SettingsActivity extends AppCompatActivity {
         HashMap<String, Object> userMap = new HashMap<>();
         userMap. put("name", fullNameEditText.getText().toString());
         userMap. put("address", addressEditText.getText().toString());
-        userMap. put("phoneOrder", userPhoneEditText.getText().toString());
+        userMap. put("phoneOrder", userEmailEditText.getText().toString());
         ref.child(Prevalent.currentonlineusers.getEmail()).updateChildren(userMap);
 
         startActivity(new Intent(SettingsActivity.this, HomeActivity.class));
@@ -156,7 +167,7 @@ public class SettingsActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Name is address.", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(userPhoneEditText.getText().toString()))
+        else if (TextUtils.isEmpty(userEmailEditText.getText().toString()))
         {
             Toast.makeText(this, "Name is mandatory.", Toast.LENGTH_SHORT).show();
         }
@@ -209,7 +220,7 @@ public class SettingsActivity extends AppCompatActivity {
                                 HashMap<String, Object> userMap = new HashMap<>();
                                 userMap. put("name", fullNameEditText.getText().toString());
                                 userMap. put("address", addressEditText.getText().toString());
-                                userMap. put("phoneOrder", userPhoneEditText.getText().toString());
+                                userMap. put("phoneOrder", userEmailEditText.getText().toString());
                                 userMap. put("image", myUrl);
                                 ref.child(Prevalent.currentonlineusers.getEmail()).updateChildren(userMap);
 

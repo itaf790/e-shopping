@@ -19,18 +19,8 @@
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:src="@drawable/profile"
-        />
-    <TextView
-        android:id="@+id/welcome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-30dp"
-        android:textStyle="bold"
-        android:textSize="25dp"
         android:layout_marginLeft="6dp"
-        android:text="Welcome"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
+        />
 
     <TextView
         android:id="@+id/user_profile_name"
@@ -38,7 +28,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:layout_marginLeft="6dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="user name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="20dp"

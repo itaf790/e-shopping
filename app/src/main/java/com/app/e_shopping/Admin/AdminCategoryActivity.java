@@ -1,4 +1,4 @@
-package com.app.e_shopping;
+package com.app.e_shopping.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,11 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.app.e_shopping.HomeActivity;
+import com.app.e_shopping.MainActivity;
+import com.app.e_shopping.R;
+
 public class AdminCategoryActivity extends AppCompatActivity {
 
 
     private ImageView airpods,jbl,logitech,magickeyboared,watch,temp;
-    private Button logOutBtn, checkOrdersBtn;
+    private Button logOutBtn, checkOrdersBtn, mantainProductsBtn ;
 
 
 
@@ -23,14 +27,25 @@ public class AdminCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_category);
 
 
-
+        mantainProductsBtn=(Button) findViewById(R.id.maintain_btn);
         logOutBtn = (Button) findViewById(R.id.admin_logout_btn);
         checkOrdersBtn = (Button) findViewById(R.id.check_orders_btn);
+
+
+        mantainProductsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(AdminCategoryActivity.this, HomeActivity.class);
+                intent.putExtra("Admin","Admin");
+                startActivity(intent);
+
+            }
+        });
 
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminCategoryActivity.this,MainActivity.class);
+                Intent intent = new Intent(AdminCategoryActivity.this, MainActivity.class);
                 intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
@@ -40,7 +55,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
         checkOrdersBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminCategoryActivity.this,AdminNewOrdersActivity.class);
+                Intent intent = new Intent(AdminCategoryActivity.this, AdminNewOrdersActivity.class);
                 startActivity(intent);
 
             }
@@ -59,7 +74,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
         airpods.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminCategoryActivity.this,AdminAddNewProductActivity.class);
+                Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
                 intent.putExtra("category","Airpods");
                 startActivity(intent);
 
