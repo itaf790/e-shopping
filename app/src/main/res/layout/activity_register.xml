@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pp"
+    android:background="@drawable/re"
     tools:context=".register">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="40dp"
         android:text="Sign In"
         android:textColor="#000000"
         android:textSize="38dp"
@@ -24,24 +24,42 @@
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="104dp"
         android:background="@drawable/inputs"
         android:ems="10"
-        android:hint="Full Name"
+        android:hint="First Name"
         android:inputType="text"
         android:padding="20dp"
         android:shadowColor="#8C7070"
         android:textColorHint="#201E1E"
-        android:textColor="#000000"/>
+        android:textColor="#000000"
+        android:maxLength="15"
+        />
+
+    <EditText
+        android:id="@+id/lastname"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp"
+        android:layout_marginBottom="104dp"
+        android:background="@drawable/inputs"
+        android:ems="10"
+        android:hint="Last Name"
+        android:inputType="text"
+        android:padding="20dp"
+        android:shadowColor="#8C7070"
+        android:textColorHint="#201E1E"
+        android:textColor="#000000"
+        android:maxLength="15" />
 
     <EditText
         android:id="@+id/emailsign"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="340dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginTop="240dp"
         android:background="@drawable/inputs"
         android:ems="10"
         android:hint="E-mail"
@@ -51,14 +69,67 @@
         android:textColorHint="#201E1E"
         android:textColor="#000000"/>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="310dp">
+
+        <com.gbksoft.countrycodepickerlib.CountryCodePicker
+            android:id="@+id/ccp"
+            android:layout_width="151dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            app:ccpDropDown_initialScrollToSelection="true"
+            app:ccpDropDown_keyboardAutoPopup="false"
+            app:ccpDropDown_searchEditTextTint="#00FF00"
+            app:ccp_areaCodeDetectedCountry="false"
+            app:ccp_autoDetectCountry="true"
+            app:ccp_countryPreference="us,ca,gb,nz"
+            app:ccp_hintExampleNumber="true" />
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/inputs"
+            android:ems="10"
+            android:hint="Phone Number"
+            android:inputType="textPhonetic"
+            android:maxLength="9"
+            android:padding="20dp"
+            android:shadowColor="#8C7070"
+            android:textColor="#000000"
+            android:textColorHint="#201E1E" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="true"
+android:layout_marginTop="380dp"
+        android:background="@drawable/inputs"
+        android:ems="10"
+        android:hint="Address"
+        android:inputType="text"
+        android:padding="20dp"
+        android:shadowColor="#8C7070"
+        android:textColor="#000000"
+        android:textColorHint="#201E1E" />
+
+
     <EditText
         android:id="@+id/passsign"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="false"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="415dp"
         android:background="@drawable/inputs"
+        android:layout_marginTop="450dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -75,7 +146,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="530dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/buttons"
         android:gravity="center"

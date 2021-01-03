@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.e_shopping.Admin.AdminMantainProductsActivity;
@@ -20,6 +21,8 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,6 +52,14 @@ public class HomeActivity extends AppCompatActivity
     private String type="";
   RecyclerView.LayoutManager layoutManager;
 
+
+
+    private int[] mImages = new int[]{
+            R.drawable.rt,
+            R.drawable.crt,
+            R.drawable.re,
+            R.drawable.ca,
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +114,7 @@ public class HomeActivity extends AppCompatActivity
             userNameTextView.setText(Prevalent.currentonlineusers.getName());
             Picasso.get().load(Prevalent.currentonlineusers.getImage()).placeholder(R.drawable.profile).into(profileImageView);
         }
+
 
 
         recyclerView=findViewById(R.id.recycler_menu);

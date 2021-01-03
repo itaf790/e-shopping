@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/yy"
+    android:background="@drawable/rt"
     android:visibility="visible"
     tools:context=".MainActivity">
 
@@ -15,14 +15,12 @@
         android:layout_height="115dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="166dp"
+        android:layout_marginTop="64dp"
         android:gravity="center|center_horizontal|center_vertical"
         android:text="Find, Discover, Choose and Buy anything Online "
         android:textColor="#0B0B0A"
         android:textSize="30dp"
         android:textStyle="bold" />
-
-
 
     <Button
         android:id="@+id/btnlogin"
