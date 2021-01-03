@@ -15,7 +15,7 @@ import com.app.e_shopping.R;
 public class AdminCategoryActivity extends AppCompatActivity {
 
 
-    private ImageView airpods,jbl,logitech,magickeyboared,watch,temp;
+    private ImageView additem;
     private Button logOutBtn, checkOrdersBtn, mantainProductsBtn ;
 
 
@@ -62,72 +62,25 @@ public class AdminCategoryActivity extends AppCompatActivity {
         });
 
 
-        airpods = (ImageView) findViewById(R.id.airpods);
-        jbl = (ImageView) findViewById(R.id.jbl);
-        logitech = (ImageView) findViewById(R.id.logitech);
-        watch = (ImageView) findViewById(R.id.watch);
-
-        temp = (ImageView) findViewById(R.id.temp);
-        magickeyboared= (ImageView) findViewById(R.id.magickey);
+        additem = (ImageView) findViewById(R.id.additem);
 
 
-        airpods.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
-                intent.putExtra("category","Airpods");
-                startActivity(intent);
-
-            }
-        });
 
 
-        jbl.setOnClickListener(new View.OnClickListener() {
+
+
+
+        additem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent intent = new Intent(AdminCategoryActivity.this,AdminAddNewProductActivity.class);
-                intent.putExtra("category","JBL");
+                intent.putExtra("category","Add Item");
                 startActivity(intent);
 
             }
         });
 
-        logitech.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AdminCategoryActivity.this,AdminAddNewProductActivity.class);
-                intent.putExtra("category","Lgitech");
-                startActivity(intent);
-            }
-        });
-
-        magickeyboared.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AdminCategoryActivity.this,AdminAddNewProductActivity.class);
-                intent.putExtra("category","Madickeyboared");
-                startActivity(intent);
-            }
-        });
-
-        watch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AdminCategoryActivity.this,AdminAddNewProductActivity.class);
-                intent.putExtra("category","Watch");
-                startActivity(intent);
-            }
-        });
-
-        temp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AdminCategoryActivity.this,AdminAddNewProductActivity.class);
-                intent.putExtra("category","Tempreture");
-                startActivity(intent);
-            }
-        });
 
 
 

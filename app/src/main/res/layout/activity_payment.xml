@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConfirmFinalOrderActivity"
-    android:background="#504A4A">
-
+    tools:context=".PaymentActivity"
+    android:background="@color/background">
 
     <com.braintreepayments.cardform.view.CardForm
         android:id="@+id/card_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent" />
 
     <Button
         android:id="@+id/btnBuy"
@@ -26,17 +24,5 @@
         android:background="@color/colorAccent"
         android:text="Buy Now"
         android:textColor="@android:color/white" />
-
-    <Button
-        android:id="@+id/confirm_final_order"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="confirm"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@android:color/white"
-        android:textSize="20dp"
-        android:layout_marginTop="500dp"
-        android:layout_centerHorizontal="true"
-        />
 
 </RelativeLayout>

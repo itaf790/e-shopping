@@ -32,88 +32,30 @@
     </RelativeLayout>
 
 
-
-    <LinearLayout
-        android:id="@+id/linear_category"
+    <ImageView
+        android:id="@+id/additem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+        android:layout_height="227dp"
+        android:layout_below="@id/rl"
+
         android:orientation="horizontal"
         android:layout_marginTop="45dp"
         android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/rl">
+
+        app:srcCompat="@drawable/ic_baseline_add_to_home_screen_24" />
 
 
-        <ImageView
-            android:id="@+id/airpods"
-            android:layout_width="202dp"
-            android:layout_height="100dp"
-            android:src="@drawable/airpods" />
-
-        <ImageView
-            android:id="@+id/magickey"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:src="@drawable/magickyeybored" />
-
-    </LinearLayout>
-
-      <LinearLayout
-          android:id="@+id/linear2_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/linear_category"
-          android:layout_marginTop="20dp">
 
 
-          <ImageView
-              android:id="@+id/logitech"
-              android:layout_width="202dp"
-              android:layout_height="100dp"
-              android:src="@drawable/logitech" />
-
-        <ImageView
-            android:id="@+id/watch"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:src="@drawable/watch"/>
-
-      </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear3_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/linear2_category">
-
-
-        <ImageView
-            android:id="@+id/jbl"
-            android:layout_width="216dp"
-            android:layout_height="100dp"
-            android:src="@drawable/jbl" />
-
-        <ImageView
-            android:id="@+id/temp"
-            android:layout_width="216dp"
-            android:layout_height="100dp"
-            android:src="@drawable/temp" />
-
-    </LinearLayout>
 
 
     <Button
         android:id="@+id/maintain_btn"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linear3_category"
+        android:layout_below="@id/additem"
         android:background="@color/colorPrimaryDark"
         android:text="Maintain Products"
         android:textColor="@android:color/white"

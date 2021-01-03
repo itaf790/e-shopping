@@ -14,5 +14,7 @@
     <string name="menu_setting">Setting</string>
     <string name="menu_cart">Cart</string>
 
+    <string name="paypal_button">Pay with PayPal</string>
+
 
 </resources>

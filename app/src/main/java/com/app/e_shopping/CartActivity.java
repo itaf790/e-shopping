@@ -47,6 +47,7 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
+
         recyclerView = findViewById(R.id.cart_list);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -102,7 +103,7 @@ public class CartActivity extends AppCompatActivity {
 
                             cartViewHolder.txtProductQuantity.setText("Quantity = " + model.getQuantity());
                             cartViewHolder.txtProductPrice.setText("Price = " + model.getPrice() + " $");
-                            cartViewHolder.txtProductName.setText(model.getPname());
+                            cartViewHolder.txtProductName.setText("Name: " + model.getPname());
 
 
                             int oneTypeTotalProduct = (Integer.valueOf(model.getPrice())) * Integer.valueOf(model.getQuantity());

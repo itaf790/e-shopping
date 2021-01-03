@@ -1,7 +1,9 @@
 package com.app.e_shopping;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -9,9 +11,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.e_shopping.Prevalent.Prevalent;
+import com.braintreepayments.cardform.view.CardForm;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +32,10 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
 
     private String totalAmount = "";
 
+    CardForm cardForm;
+    Button buy;
+    AlertDialog.Builder alertBuilder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +45,46 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         totalAmount = getIntent().getStringExtra("Total Price");
         Toast.makeText(this, "Total Price = " + totalAmount, Toast.LENGTH_SHORT).show();
 
-        confirmOrderBtn = (Button) findViewById(R.id.confirm_final_order);
-        nameEditText = (EditText) findViewById(R.id.shipment_name);
-        phoneEditText = (EditText) findViewById(R.id.shipment_phone_number);
-        addressEditText = (EditText) findViewById(R.id.shipment_address);
-        cityEditText = (EditText) findViewById(R.id.shipment_city);
-
-        confirmOrderBtn.setOnClickListener(new View.OnClickListener() {
+        cardForm = findViewById(R.id.card_form);
+        buy = findViewById(R.id.btnBuy);
+        cardForm.cardRequired(true)
+                .expirationRequired(true)
+                .cvvRequired(true)
+                .postalCodeRequired(true)
+                .mobileNumberRequired(true)
+                .mobileNumberExplanation("SMS is required on this number")
+                .setup(ConfirmFinalOrderActivity.this);
+        cardForm.getCvvEditText().setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        buy.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-              Check();
+            public void onClick(View view) {
+                if (cardForm.isValid()) {
+                    alertBuilder = new AlertDialog.Builder(ConfirmFinalOrderActivity.this);
+                    alertBuilder.setTitle("Confirm before purchase");
+                    alertBuilder.setMessage("Card number: " + cardForm.getCardNumber() + "\n" +
+                            "Card expiry date: " + cardForm.getExpirationDateEditText().getText().toString() + "\n" +
+                            "Card CVV: " + cardForm.getCvv() + "\n" +
+                            "Postal code: " + cardForm.getPostalCode() + "\n" +
+                            "Phone number: " + cardForm.getMobileNumber());
+                    alertBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                            Toast.makeText(ConfirmFinalOrderActivity.this, "Thank you for purchase", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    AlertDialog alertDialog = alertBuilder.create();
+                    alertDialog.show();
+
+                } else {
+                    Toast.makeText(ConfirmFinalOrderActivity.this, "Please complete the form", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -54,25 +92,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
 
     }
 
-    private void Check() {
-        if (TextUtils.isEmpty(nameEditText.getText().toString())){
-            Toast.makeText(this, "Please provide your full name", Toast.LENGTH_SHORT).show();
-        }
-        else if (TextUtils.isEmpty(phoneEditText.getText().toString())){
-            Toast.makeText(this, "Please provide your phone number ", Toast.LENGTH_SHORT).show();
-        }
-        else if (TextUtils.isEmpty(addressEditText.getText().toString())){
-            Toast.makeText(this, "Please provide your address", Toast.LENGTH_SHORT).show();
-        }
-        else if (TextUtils.isEmpty(cityEditText.getText().toString())){
-            Toast.makeText(this, "Please provide your city name ", Toast.LENGTH_SHORT).show();
-        }
 
-        else{
-            ConfirmOrder();
-        }
-
-    }
 
     private void ConfirmOrder() {
         final String saveCurrentDate,saveCurrentTime;

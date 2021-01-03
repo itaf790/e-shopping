@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.app.e_shopping"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -77,6 +77,9 @@ dependencies {
     implementation 'com.hbb20:ccp:1.7.1'
 
     implementation 'com.synnapps:carouselview:0.1.5'
-    implementation 'com.google.zxing:core:3.2.1'
+    implementation 'com.google.zxing:core:3.4.1'
+
+    implementation 'com.paypal.sdk:paypal-android-sdk:2.16.0'
+    implementation 'com.braintreepayments:card-form:5.0.0'
 
 }
