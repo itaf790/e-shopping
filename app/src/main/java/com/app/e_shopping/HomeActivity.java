@@ -54,13 +54,6 @@ public class HomeActivity extends AppCompatActivity
 
 
 
-    private int[] mImages = new int[]{
-            R.drawable.rt,
-            R.drawable.crt,
-            R.drawable.re,
-            R.drawable.ca,
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -16,6 +16,9 @@ import android.widget.Toast;
 import com.app.e_shopping.Admin.AdminCategoryActivity;
 import com.app.e_shopping.Model.Users;
 import com.app.e_shopping.Prevalent.Prevalent;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -62,25 +65,13 @@ public class login extends AppCompatActivity {
             }
         });
 
-
-        ForgetPasswordLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(login.this, ResetPasswordActivity.class);
-                intent.putExtra("check", "login");
-                startActivity(intent);
-            }
-        });
-
-
-
         AdminLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               loginbutton.setText("Login Admin");
-               NotAdminLink.setVisibility(View.VISIBLE);
-               AdminLink.setVisibility(View.INVISIBLE);
-               parentDbName="Admins";
+                loginbutton.setText("Login Admin");
+                NotAdminLink.setVisibility(View.VISIBLE);
+                AdminLink.setVisibility(View.INVISIBLE);
+                parentDbName="Admins";
 
             }
         });
@@ -94,7 +85,37 @@ public class login extends AppCompatActivity {
             }
         });
 
+        ForgetPasswordLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetPasswordUser();
+            }
+        });
     }
+
+    private void resetPasswordUser() {
+        String email = inputemail.getText().toString().trim();
+        if(TextUtils.isEmpty(email))
+        {
+            Toast.makeText(login.this,"Please enter your email id",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(login.this, "Reset Email sent", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+    }
+
+
+
+
 
 
 

@@ -9,6 +9,8 @@
     tools:context=".MainActivity">
 
 
+
+
     <TextView
         android:id="@+id/slogn"
         android:layout_width="323dp"

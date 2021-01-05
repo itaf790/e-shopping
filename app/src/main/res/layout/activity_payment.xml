@@ -7,22 +7,71 @@
     tools:context=".PaymentActivity"
     android:background="@color/background">
 
-    <com.braintreepayments.cardform.view.CardForm
-        android:id="@+id/card_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/btnBuy"
+    <RelativeLayout
+        android:id="@+id/r11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        >
+
+        <TextView
+            android:id="@+id/payment_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center|center_horizontal"
+            android:text="Payment Method "
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/txtmethod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/r11"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:text="Choose your payment method"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <CheckBox
+        android:id="@+id/credit_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtmethod"
+        android:layout_marginTop="30dp"
+        android:onClick="onClick"
+        android:shadowColor="@color/colorPrimaryDark"
+        android:text="Credit Card "
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:buttonTint="@color/colorPrimaryDark"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:textSize="18dp"/>
+
+    <CheckBox
+        android:id="@+id/recived"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/credit_card"
         android:layout_marginTop="10dp"
-        android:background="@color/colorAccent"
-        android:text="Buy Now"
-        android:textColor="@android:color/white" />
+        android:layout_marginLeft="40dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:buttonTint="@color/colorPrimaryDark"
+        android:text="Payment when Orders Recived "
+        android:textSize="18dp"
+        android:onClick="onClick"
+        />
+
+
+
 
 </RelativeLayout>

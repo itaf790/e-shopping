@@ -1,71 +1,66 @@
 package com.app.e_shopping;
 
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
-import android.content.DialogInterface;
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
-import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Toast;
-
-import com.braintreepayments.cardform.view.CardForm;
 
 public class PaymentActivity extends AppCompatActivity {
 
+    private static final int VIBRATE_PERMISSION_REQUEST = 10;
 
-    CardForm cardForm;
-    Button buy;
-    AlertDialog.Builder alertBuilder;
+    private CheckBox Checkboxrecived , Checkboxcard;
+
+    private String totalAmount = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+        totalAmount = getIntent().getStringExtra("Total Price");
+        Toast.makeText(this, "Total Price = " + totalAmount, Toast.LENGTH_SHORT).show();
 
-        cardForm = findViewById(R.id.card_form);
-        buy = findViewById(R.id.btnBuy);
-        cardForm.cardRequired(true)
-                .expirationRequired(true)
-                .cvvRequired(true)
-                .postalCodeRequired(true)
-                .mobileNumberRequired(true)
-                .mobileNumberExplanation("SMS is required on this number")
-                .setup(PaymentActivity.this);
-        cardForm.getCvvEditText().setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-        buy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (cardForm.isValid()) {
-                    alertBuilder = new AlertDialog.Builder(PaymentActivity.this);
-                    alertBuilder.setTitle("Confirm before purchase");
-                    alertBuilder.setMessage("Card number: " + cardForm.getCardNumber() + "\n" +
-                            "Card expiry date: " + cardForm.getExpirationDateEditText().getText().toString() + "\n" +
-                            "Card CVV: " + cardForm.getCvv() + "\n" +
-                            "Postal code: " + cardForm.getPostalCode() + "\n" +
-                            "Phone number: " + cardForm.getMobileNumber());
-                    alertBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                            Toast.makeText(PaymentActivity.this, "Thank you for purchase", Toast.LENGTH_LONG).show();
-                        }
-                    });
-                    alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    });
-                    AlertDialog alertDialog = alertBuilder.create();
-                    alertDialog.show();
+        Checkboxrecived = findViewById(R.id.recived);
+        Checkboxcard = findViewById(R.id.credit_card);
 
-                } else {
-                    Toast.makeText(PaymentActivity.this, "Please complete the form", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+
+    }
+
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.credit_card:
+                startActivity(new Intent(this, CreditcardActivity.class));
+                break;
+            case R.id.recived:
+                startActivity(new Intent(this, RecivedActivity.class));
+            default:
+                break;
+        }
+    }
+
+
+    private void enableVibratePermission() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.VIBRATE},
+                VIBRATE_PERMISSION_REQUEST);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+
     }
 }
+
+

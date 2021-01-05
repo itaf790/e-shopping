@@ -62,7 +62,7 @@ public class SettingsActivity extends AppCompatActivity {
         profileChangeTextBtn = (TextView) findViewById(R.id.profile_image_change_btn);
         closeTextBtn = (TextView) findViewById(R.id.close_settings_btn);
         saveTextButton = (TextView) findViewById(R.id.update_account_settings_btn);
-        securityQuestionbtn = findViewById(R.id.security_ques_btn);
+
 
 
         userInfoDisplay(profileImageView, fullNameEditText, userEmailEditText, addressEditText);
@@ -75,14 +75,7 @@ public class SettingsActivity extends AppCompatActivity {
                 finish();
             }
         });
-        securityQuestionbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SettingsActivity.this, ResetPasswordActivity.class);
-                intent.putExtra("check", "settings");
-                startActivity(intent);
-            }
-        });
+
 
 
         saveTextButton.setOnClickListener(new View.OnClickListener() {
@@ -165,11 +158,11 @@ public class SettingsActivity extends AppCompatActivity {
         }
         else if (TextUtils.isEmpty(addressEditText.getText().toString()))
         {
-            Toast.makeText(this, "Name is address.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Address is address.", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(userEmailEditText.getText().toString()))
         {
-            Toast.makeText(this, "Name is mandatory.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Email is mandatory.", Toast.LENGTH_SHORT).show();
         }
         else if(checker.equals("clicked"))
         {

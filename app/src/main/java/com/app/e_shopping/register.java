@@ -47,8 +47,8 @@ public class register extends AppCompatActivity {
         inputlastname=(EditText) findViewById(R.id.lastname);
         inputemail=(EditText) findViewById(R.id.emailsign);
         inputpass=(EditText) findViewById(R.id.passsign);
-
         inputaddress=(EditText) findViewById(R.id.address);
+
 
 
         loadingBar= new ProgressDialog(this);
@@ -68,6 +68,9 @@ public class register extends AppCompatActivity {
        inputphone = (EditText) findViewById(R.id.phone);
 
         countryCodePicker.registerCarrierNumberEditText(inputphone);
+
+
+
     }
 
 

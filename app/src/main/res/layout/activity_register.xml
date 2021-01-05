@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="false"
         android:layout_centerHorizontal="true"
-android:layout_marginTop="380dp"
+        android:layout_marginTop="380dp"
         android:background="@drawable/inputs"
         android:ems="10"
         android:hint="Address"
@@ -120,6 +120,9 @@ android:layout_marginTop="380dp"
         android:shadowColor="#8C7070"
         android:textColor="#000000"
         android:textColorHint="#201E1E" />
+
+
+
 
 
     <EditText
