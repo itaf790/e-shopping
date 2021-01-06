@@ -7,22 +7,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    android:background="#FAFAFA"
+
     >
-
-    <com.synnapps.carouselview.CarouselView
-
-        android:id="@+id/carouselView"
-        android:layout_width="wrap_content"
-        android:layout_height="190dp"
-        app:fillColor="#FFFFFFFF"
-        app:pageColor="#00000000"
-        app:radius="6dp"
-        app:slideInterval="3000"
-        app:strokeColor="#FF777777"
-        app:strokeWidth="1dp"
-
-        tools:ignore="MissingConstraints" />
 
 
     <include
@@ -36,6 +22,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="#F8EDED"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>

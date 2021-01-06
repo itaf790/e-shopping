@@ -9,9 +9,11 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="185dp"
-        android:layout_height="143dp"
-        android:src="@drawable/logoo" />
+        android:layout_width="232dp"
+        android:layout_height="197dp"
+        android:layout_gravity="center|center_horizontal|center_vertical"
+        android:foregroundGravity="center_vertical|center|center_horizontal"
+        android:src="@drawable/elec" />
 
 
 

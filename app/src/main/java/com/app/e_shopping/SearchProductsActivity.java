@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.app.e_shopping.Model.Products;
 import com.app.e_shopping.ViewHolder.ProductViewHolder;
@@ -28,6 +30,7 @@ public class SearchProductsActivity extends AppCompatActivity {
     private EditText inputText;
     private RecyclerView searchList;
     private String searchString;
+    private ImageView closeTextBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class SearchProductsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_products);
 
         searchBtn=findViewById(R.id.search_btn);
+        closeTextBtn = (ImageView) findViewById(R.id.close);
         inputText=findViewById(R.id.search_product_name);
         searchList=findViewById(R.id.search_list);
         searchList.setLayoutManager(new LinearLayoutManager(SearchProductsActivity.this));
@@ -45,6 +49,16 @@ public class SearchProductsActivity extends AppCompatActivity {
                 onStart();
             }
         });
+
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
+
     }
 
 

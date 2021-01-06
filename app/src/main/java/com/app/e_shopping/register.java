@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.gbksoft.countrycodepickerlib.CountryCodePicker;
@@ -30,6 +31,7 @@ public class register extends AppCompatActivity {
     private ProgressDialog loadingBar;
     private MainActivity mainActivity=new MainActivity();
     private CountryCodePicker countryCodePicker;
+    private ImageView closeTextBtn;
 
 
 
@@ -37,7 +39,15 @@ public class register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        closeTextBtn = (ImageView) findViewById(R.id.close);
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
 
         bind();
 

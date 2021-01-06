@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ public class AdminUserProductsActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     private String userID = "";
     private DatabaseReference cartListRef;
+    private ImageView closeTextBtn;
 
 
     @Override
@@ -31,7 +33,15 @@ public class AdminUserProductsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_user_products);
 
-
+        closeTextBtn = (ImageView) findViewById(R.id.close);
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
         userID =  getIntent().getStringExtra("uid");
         productsList = findViewById(R.id.products_list);
         productsList.setHasFixedSize(true);

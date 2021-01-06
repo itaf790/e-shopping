@@ -33,7 +33,7 @@ import java.util.HashMap;
 public class ProductDetailsActivity extends AppCompatActivity {
 
 
-
+    private ImageView closeTextBtn;
     private Button addToCartButton;
     private ImageView productImage;
     private ElegantNumberButton numberButton;
@@ -46,6 +46,17 @@ public class ProductDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
+
+        closeTextBtn = (ImageView) findViewById(R.id.close);
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
+
 
         productID = getIntent().getStringExtra("pid");
 

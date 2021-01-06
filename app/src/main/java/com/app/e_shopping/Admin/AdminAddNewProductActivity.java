@@ -43,11 +43,24 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     private StorageReference productImagesRef;
     private DatabaseReference productsRef;
     private ProgressDialog loadingBar;
+    private ImageView closeTextBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_new_product);
+
+
+        closeTextBtn = (ImageView) findViewById(R.id.close);
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
 
         categoryName = getIntent().getExtras().get("category").toString();
         productImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");

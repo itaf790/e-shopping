@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,12 +36,24 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
     CardForm cardForm;
     Button buy;
     AlertDialog.Builder alertBuilder;
-
+    private ImageView closeTextBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_final_order);
+
+
+        closeTextBtn = (ImageView) findViewById(R.id.close);
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
+
 
         totalAmount = getIntent().getStringExtra("Total Price");
         Toast.makeText(this, "Total Price = " + totalAmount, Toast.LENGTH_SHORT).show();

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +39,7 @@ public class CartActivity extends AppCompatActivity {
      private Button nextProcessBtn;
      private TextView txtTotalAmount, txtMsg1 ;
      private int overTotalPrice = 0;
-
+    private ImageView closeTextBtn;
 
 
 
@@ -47,6 +48,15 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
+        closeTextBtn = (ImageView) findViewById(R.id.close);
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
 
         recyclerView = findViewById(R.id.cart_list);
         recyclerView.setHasFixedSize(true);

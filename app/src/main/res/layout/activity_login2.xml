@@ -9,6 +9,16 @@
     android:visibility="visible"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="50dp"
+        android:layout_height="44dp"
+        android:src="@drawable/back"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="50dp"
+        android:layout_gravity="center"
+        ></ImageView>
+
 
     <TextView
         android:id="@+id/textlog"

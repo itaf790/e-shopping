@@ -30,12 +30,22 @@ public class AdminMantainProductsActivity extends AppCompatActivity {
     private ImageView imageView;
     private String productID="";
     private DatabaseReference productRef;
+    private ImageView closeTextBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_mantain_products);
 
+        closeTextBtn = (ImageView) findViewById(R.id.close);
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
         applyChangesBtn= findViewById(R.id.apply_changes_btn);
         price= findViewById(R.id.product_price_mantain);
         description= findViewById(R.id.product_description_mantain);

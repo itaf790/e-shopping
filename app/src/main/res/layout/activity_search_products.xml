@@ -15,22 +15,25 @@
 <TableRow
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp">
+    android:layout_marginTop="20dp"
+    android:id="@+id/tr">
+
 
     <ImageView
+        android:id="@+id/close"
         android:layout_width="50dp"
         android:layout_height="44dp"
-        android:src="@drawable/search"
+        android:src="@drawable/back"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
-
-
+        android:layout_gravity="center"
         ></ImageView>
+
 
     <EditText
         android:icon="@drawable/search"
         android:id="@+id/search_product_name"
-        android:layout_width="206dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
 
@@ -39,20 +42,34 @@
         android:textColorHint="#000000"
         android:textSize="20dp" />
 
-
     <Button
         android:id="@+id/search_btn"
-        android:background="#FDF4F4"
-        android:layout_width="wrap_content"
+        android:layout_width="74dp"
         android:layout_height="wrap_content"
-        android:text="Search"
-        android:textSize="16dp"
         android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/search_product_name"
+        android:background="#FDF4F4"
+        android:text="Search"
         android:textColor="@android:color/black"
-        android:layout_toRightOf="@+id/search_product_name"/>
+        android:textSize="16dp" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/search"
+
+
+        ></ImageView>
 
     ></TableRow>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tr">
 
+    </androidx.recyclerview.widget.RecyclerView>
 
 
     </RelativeLayout>

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.app.e_shopping.Prevalent.Prevalent;
@@ -25,7 +26,7 @@ import java.util.HashMap;
 
 public class CreditcardActivity extends AppCompatActivity {
 
-
+    private ImageView closeTextBtn;
     CardForm cardForm;
     Button buy;
     AlertDialog.Builder alertBuilder;
@@ -35,6 +36,18 @@ public class CreditcardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creditcard);
+
+        closeTextBtn = (ImageView) findViewById(R.id.close);
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
+
+
         cardForm = findViewById(R.id.card_form);
         buy = findViewById(R.id.btnBuy);
         cardForm.cardRequired(true)

@@ -15,32 +15,41 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".CreditcardActivity"></activity>
-        <activity android:name=".RecivedActivity" />
-        <activity android:name=".PaymentActivity" />
-        <activity android:name=".ResetPasswordActivity" />
-        <activity android:name=".Admin.AdminMantainProductsActivity" />
-        <activity android:name=".SearchProductsActivity" />
-        <activity android:name=".Admin.AdminUserProductsActivity" />
-        <activity android:name=".Admin.AdminNewOrdersActivity" />
-        <activity android:name=".ConfirmFinalOrderActivity" />
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".CreditcardActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".RecivedActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".PaymentActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".ResetPasswordActivity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".Admin.AdminMantainProductsActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".SearchProductsActivity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".Admin.AdminUserProductsActivity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".Admin.AdminNewOrdersActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".ConfirmFinalOrderActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".CartActivity"
-            android:parentActivityName=".HomeActivity" />
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".ProductDetailsActivity"
-            android:parentActivityName=".HomeActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".Admin.AdminCategoryActivity" />
-        <activity android:name=".Admin.AdminAddNewProductActivity" />
-        <activity android:name=".register" />
-        <activity android:name=".login" />
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".SettingsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".Admin.AdminCategoryActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".Admin.AdminAddNewProductActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".register"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".login"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".MainActivity" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".splash"
             android:configChanges="orientation|keyboardHidden|screenSize"

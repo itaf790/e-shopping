@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class PaymentActivity extends AppCompatActivity {
@@ -18,13 +19,25 @@ public class PaymentActivity extends AppCompatActivity {
     private static final int VIBRATE_PERMISSION_REQUEST = 10;
 
     private CheckBox Checkboxrecived , Checkboxcard;
-
+    private ImageView closeTextBtn;
     private String totalAmount = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+
+
+        closeTextBtn = (ImageView) findViewById(R.id.close);
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
+
 
         totalAmount = getIntent().getStringExtra("Total Price");
         Toast.makeText(this, "Total Price = " + totalAmount, Toast.LENGTH_SHORT).show();

@@ -14,7 +14,7 @@ import com.app.e_shopping.R;
 
 public class AdminCategoryActivity extends AppCompatActivity {
 
-
+    private ImageView closeTextBtn;
     private ImageView additem;
     private Button logOutBtn, checkOrdersBtn, mantainProductsBtn ;
 
@@ -26,7 +26,15 @@ public class AdminCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_category);
 
-
+        closeTextBtn = (ImageView) findViewById(R.id.close);
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
         mantainProductsBtn=(Button) findViewById(R.id.maintain_btn);
         logOutBtn = (Button) findViewById(R.id.admin_logout_btn);
         checkOrdersBtn = (Button) findViewById(R.id.check_orders_btn);

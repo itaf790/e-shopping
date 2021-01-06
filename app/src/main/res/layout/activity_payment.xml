@@ -5,41 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PaymentActivity"
-    android:background="@color/background">
+    android:background="@drawable/wall">
 
 
-    <RelativeLayout
-        android:id="@+id/r11"
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="50dp"
+        android:layout_height="44dp"
+        android:src="@drawable/back"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        ></ImageView>
+    <TextView
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:layout_alignParentTop="true"
-        >
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center|center_horizontal"
+        android:text="Setting Orders"
+        android:id="@+id/text"
+        android:textAlignment="center"
+        android:textColor="#372E2E"
+        android:textSize="30dp"
+        android:textStyle="bold"></TextView>
 
-        <TextView
-            android:id="@+id/payment_title"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center|center_horizontal"
-            android:text="Payment Method "
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="20dp" />
 
-    </RelativeLayout>
 
 
     <TextView
         android:id="@+id/txtmethod"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/r11"
-        android:layout_marginTop="30dp"
+        android:layout_below="@id/text"
+        android:layout_marginTop="50dp"
         android:gravity="center"
         android:textSize="25dp"
         android:text="Choose your payment method"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="#272625" />
 
     <CheckBox
         android:id="@+id/credit_card"
@@ -48,11 +52,11 @@
         android:layout_below="@id/txtmethod"
         android:layout_marginTop="30dp"
         android:onClick="onClick"
-        android:shadowColor="@color/colorPrimaryDark"
+        android:shadowColor="#191818"
         android:text="Credit Card "
-        android:textColor="@color/colorPrimaryDark"
-        android:textColorHint="@color/colorPrimaryDark"
-        android:buttonTint="@color/colorPrimaryDark"
+        android:textColor="#121111"
+        android:textColorHint="#121111"
+        android:buttonTint="#191818"
         android:layout_marginLeft="40dp"
         android:textSize="18dp"/>
 
@@ -63,9 +67,9 @@
         android:layout_below="@id/credit_card"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="40dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textColorHint="@color/colorPrimaryDark"
-        android:buttonTint="@color/colorPrimaryDark"
+        android:textColor="#191818"
+        android:textColorHint="#191818"
+        android:buttonTint="#0B0B0A"
         android:text="Payment when Orders Recived "
         android:textSize="18dp"
         android:onClick="onClick"

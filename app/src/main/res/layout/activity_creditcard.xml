@@ -4,19 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreditcardActivity">
+    tools:context=".CreditcardActivity"
+    android:background="@drawable/wall"
+    >
 
     <com.braintreepayments.cardform.view.SupportedCardTypesView
         android:id="@+id/supported_card_types"
+        android:layout_marginTop="90sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingTop="20dp" />
+        android:paddingTop="20dp"
+        android:textColor="#000000"/>
 
     <com.braintreepayments.cardform.view.CardForm
         android:id="@+id/card_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         />
 
     <Button
@@ -24,12 +29,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
         android:layout_marginTop="10dp"
-        android:background="@color/colorAccent"
+        android:layout_marginRight="40dp"
+        android:textSize="20dp"
+
+        android:layout_marginBottom="57dp"
+        android:background="@drawable/inputs"
         android:text="Buy Now"
-        android:textColor="@android:color/white" />
+        android:textColor="#000000" />
 
 </RelativeLayout>

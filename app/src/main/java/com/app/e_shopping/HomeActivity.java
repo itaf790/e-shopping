@@ -53,7 +53,6 @@ public class HomeActivity extends AppCompatActivity
   RecyclerView.LayoutManager layoutManager;
     CarouselView carouselView;
 
-    int[] sampleImages = {R.drawable.ca, R.drawable.crt, R.drawable.backm, R.drawable.backmain};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +62,11 @@ public class HomeActivity extends AppCompatActivity
 
 
 
-        Intent intent=getIntent();
+
+
+
+
+    Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
         if(bundle!=null){
             type= getIntent().getExtras().get("Admin").toString();}
@@ -167,18 +170,8 @@ public class HomeActivity extends AppCompatActivity
 
 
 
-        carouselView = (CarouselView) findViewById(R.id.carouselView);
-        carouselView.setPageCount(sampleImages.length);
-
-        carouselView.setImageListener(imageListener);
     }
 
-    ImageListener imageListener = new ImageListener() {
-        @Override
-        public void setImageForPosition(int position, ImageView imageView) {
-            imageView.setImageResource(sampleImages[position]);
-        }
-    };
 
 
     ///// hay ll product

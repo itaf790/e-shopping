@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,7 @@ public class login extends AppCompatActivity {
     private ProgressDialog loadingBar;
     private TextView AdminLink, NotAdminLink , ForgetPasswordLink;
     private String parentDbName="Users";
-
+    private ImageView closeTextBtn;
 
     private com.rey.material.widget.CheckBox chkBoxRememberMe;
     private MainActivity mainActivity=new MainActivity();
@@ -44,6 +45,17 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
+
+        closeTextBtn = (ImageView) findViewById(R.id.close);
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
+
 
         loginbutton=(Button)findViewById(R.id.login);
         inputemail=(EditText) findViewById(R.id.email);

@@ -5,45 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Admin.AdminCategoryActivity"
-    android:background="#FFFFFF">
+    android:background="@drawable/wall">
 
-    <RelativeLayout
-        android:id="@+id/rl"
-        android:layout_width="match_parent"
+
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="50dp"
+        android:layout_height="44dp"
+        android:src="@drawable/back"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        ></ImageView>
+    <TextView
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:layout_alignParentTop="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center|center_horizontal"
+        android:text="Setting Orders"
+        android:id="@+id/text"
+        android:textAlignment="center"
+        android:textColor="#372E2E"
+        android:textSize="30dp"
+        android:textStyle="bold"></TextView>
 
-        <TextView
 
-
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center|center_horizontal"
-            android:id="@+id/slogn_category"
-            android:layout_width="match_parent"
-            android:layout_centerHorizontal="true"
-            android:text="Add New Products"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="26dp"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
+    <TextView
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:gravity="center|center_horizontal"
+        android:text="Click to picture to add new items "
+        android:textAlignment="center"
+        android:textColor="#372E2E"
+        android:textSize="20dp"
+        android:id="@+id/text2"
+        android:textStyle="bold"/>
 
 
     <ImageView
         android:id="@+id/additem"
         android:layout_width="match_parent"
-
         android:layout_height="227dp"
-        android:layout_below="@id/rl"
-
+        android:layout_below="@id/text2"
         android:orientation="horizontal"
         android:layout_marginTop="45dp"
         android:gravity="center"
         android:layout_centerHorizontal="true"
-
         app:srcCompat="@drawable/ic_baseline_add_to_home_screen_24" />
 
 
@@ -56,9 +67,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/additem"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/inputs"
         android:text="Maintain Products"
-        android:textColor="@android:color/white"
+        android:textColor="#221F1F"
         android:textSize="20dp"
         android:textAllCaps="false"
         android:layout_centerHorizontal="true"
@@ -72,9 +83,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/maintain_btn"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/inputs"
         android:text="Check New Orders"
-        android:textColor="@android:color/white"
+        android:textColor="#221F1F"
         android:textSize="20dp"
         android:textAllCaps="false"
         android:layout_centerHorizontal="true"
@@ -89,9 +100,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/check_orders_btn"
         android:layout_marginTop="10dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/inputs"
         android:text="Logout"
-        android:textColor="@android:color/white"
+        android:textColor="#221F1F"
         android:textSize="20dp"
         android:textAllCaps="false"
         android:layout_centerHorizontal="true"

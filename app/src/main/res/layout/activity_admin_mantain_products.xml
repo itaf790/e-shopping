@@ -4,25 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardElevation="15dp"
-    android:background="@color/background"
-
+    android:background="@drawable/wall"
     tools:context=".Admin.AdminMantainProductsActivity">
+
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="50dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/back"></ImageView>
+
+    <TextView
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center|center_horizontal"
+        android:text="Update Products"
+        android:id="@+id/text"
+        android:textAlignment="center"
+        android:textColor="#372E2E"
+        android:textSize="30dp"
+        android:textStyle="bold"></TextView>
+
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="610dp"
         android:background="@color/background"
-        >
+        android:layout_marginTop="80dp"
 
+        >
 
 
         <ImageView
             android:id="@+id/product_image_mantain"
             android:layout_width="match_parent"
-            android:layout_height="290dp"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="10dp"
-            />
+            android:layout_height="200dp"
+
+            android:scaleType="centerCrop" />
 
         <EditText
             android:id="@+id/product_name_mantain"
