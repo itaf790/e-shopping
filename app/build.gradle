@@ -75,12 +75,13 @@ dependencies {
 
     implementation 'com.github.gbksoft:GBKCountryCodePicker:v1.0.0'
     implementation 'com.hbb20:ccp:1.7.1'
-
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.synnapps:carouselview:0.1.5'
     implementation 'com.google.zxing:core:3.4.1'
 
     implementation 'com.paypal.sdk:paypal-android-sdk:2.16.0'
     implementation 'com.braintreepayments:card-form:5.0.0'
+
 
     implementation 'com.github.yesterselga:country-picker-android:1.0'
 

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -61,6 +62,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
             verifyButton.setText("Set");
             displayPreviousAnswers();
 
+
             verifyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -81,7 +83,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    veriyfyUser();
+                    verifyUser();
                 }
             });
         }
@@ -98,7 +100,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
             Toast.makeText(ResetPasswordActivity.this, "Please answer both questions", Toast.LENGTH_SHORT).show();
         }
         else  {
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users")
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference()
+                    .child("Users")
                     .child(Prevalent.currentonlineusers.getEmail());
 
             HashMap<String, Object> userdataMap= new HashMap<>();
@@ -147,65 +150,115 @@ public class ResetPasswordActivity extends AppCompatActivity {
             }
         });
 
-    }
-private void veriyfyUser(){
-
-
+    } private void verifyUser()
+    {
         final String email = Email.getText().toString();
-    final String answer1 = question1.getText().toString().toLowerCase();
-    final String answer2 = question2.getText().toString().toLowerCase();
+        final String answer1 = question1.getText().toString().toLowerCase();
+        final String answer2 = question2.getText().toString().toLowerCase();
 
-    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users")
-            .child(Prevalent.currentonlineusers.getEmail());
+        if (!email.equals("") && !answer1.equals("") && !answer2.equals(""))
+        {
+            final DatabaseReference ref = FirebaseDatabase.getInstance().getReference()
+                    .child("Users")
+                    .child(email);
 
-    ref.addValueEventListener(new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            if (snapshot.exists()){
+            ref.addValueEventListener(new ValueEventListener()
+            {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                {
+                    if (dataSnapshot.exists())
+                    {
+                        String mEmail = dataSnapshot.child("email").getValue().toString();
 
-                String mEmail = snapshot.child("email").getValue().toString();
-                if (email.equals(mEmail) || email.equals(Prevalent.currentonlineusers.getEmail())){
+                        if (dataSnapshot.hasChild("Security Questions"))
+                        {
+                            String ans1 = dataSnapshot.child("Security Questions").child("answer1").getValue().toString();
+                            String ans2 = dataSnapshot.child("Security Questions").child("answer2").getValue().toString();
 
-                    if (snapshot.hasChild("Security Questions")){
+                            if (!ans1.equals(answer1))
+                            {
+                                Toast.makeText(ResetPasswordActivity.this, "İlk sorunuzun cevabı yanlış", Toast.LENGTH_SHORT).show();
+                            }
+                            else if (!ans2.equals(answer2))
+                            {
+                                Toast.makeText(ResetPasswordActivity.this, "İkinci sorunuzun cevabı yanlış", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(ResetPasswordActivity.this);
+                                builder.setTitle("Yeni Şifre");
 
+                                final EditText newPassword = new EditText(ResetPasswordActivity.this);
+                                newPassword.setHint("Yeni şifrenizi buraya yazın");
+                                builder.setView(newPassword);
 
+                                builder.setPositiveButton("Değiştir", new DialogInterface.OnClickListener()
+                                {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which)
+                                    {
+                                        if (!newPassword.getText().toString().equals(""))
+                                        {
+                                            ref.child("password")
+                                                    .setValue(newPassword.getText().toString())
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>()
+                                                    {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task)
+                                                        {
+                                                            if (task.isSuccessful())
+                                                            {
+                                                                Toast.makeText(ResetPasswordActivity.this, "Şifreniz değiştirildi.", Toast.LENGTH_SHORT).show();
 
-                        String ans1 = snapshot.child("answer1").getValue().toString();
-                        String ans2 = snapshot.child("answer2").getValue().toString();
-                        if (!ans1.equals(answer1)){
-                            Toast.makeText(ResetPasswordActivity.this, "your 1st answer is wrong", Toast.LENGTH_SHORT).show();
+                                                                Intent intent = new Intent(ResetPasswordActivity.this,login.class);
+                                                                startActivity(intent);
+                                                            }
+                                                        }
+                                                    });
+                                        }
+                                    }
+                                });
 
+                                builder.setNegativeButton("Çıkış", new DialogInterface.OnClickListener()
+                                {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which)
+                                    {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                                builder.show();
+
+                            }
                         }
-                        else  if (!ans2.equals(answer2)){
-                            Toast.makeText(ResetPasswordActivity.this, "your 2nd answer is wrong", Toast.LENGTH_SHORT).show();
 
-                        }
-
-                        else {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(ResetPasswordActivity.this);
-                            builder.setTitle("New Password");
-
-                            
+                        else
+                        {
+                            Toast.makeText(ResetPasswordActivity.this, "Güvenlik sorularını daha belirlemediniz.", Toast.LENGTH_SHORT).show();
                         }
                     }
 
-
-                    
+                    else
+                    {
+                        Toast.makeText(ResetPasswordActivity.this, "Telefon numarası bulunamadı. Tekrar deneyin", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else {
 
-                    Toast.makeText(ResetPasswordActivity.this, "This user Email not exist ", Toast.LENGTH_SHORT).show();
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError)
+                {
+
                 }
-            }
+            });
         }
 
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
+        else
+        {
+            Toast.makeText(this, "Lütfen soruları yanıtlayın", Toast.LENGTH_SHORT).show();
         }
-    });
-
-}
 
 
+    }
 }

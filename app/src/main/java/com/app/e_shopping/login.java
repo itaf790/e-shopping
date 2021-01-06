@@ -65,6 +65,16 @@ public class login extends AppCompatActivity {
             }
         });
 
+        ForgetPasswordLink.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(login.this,ResetPasswordActivity.class);
+                intent.putExtra("check", "login");
+                startActivity(intent);
+            }
+        });
         AdminLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,32 +95,8 @@ public class login extends AppCompatActivity {
             }
         });
 
-        ForgetPasswordLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resetPasswordUser();
-            }
-        });
-    }
 
-    private void resetPasswordUser() {
-        String email = inputemail.getText().toString().trim();
-        if(TextUtils.isEmpty(email))
-        {
-            Toast.makeText(login.this,"Please enter your email id",Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            FirebaseAuth.getInstance().sendPasswordResetEmail(email)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(login.this, "Reset Email sent", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-        }
+
     }
 
 

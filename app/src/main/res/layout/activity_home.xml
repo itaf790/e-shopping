@@ -10,6 +10,19 @@
     android:background="#FAFAFA"
     >
 
+    <com.synnapps.carouselview.CarouselView
+
+        android:id="@+id/carouselView"
+        android:layout_width="wrap_content"
+        android:layout_height="190dp"
+        app:fillColor="#FFFFFFFF"
+        app:pageColor="#00000000"
+        app:radius="6dp"
+        app:slideInterval="3000"
+        app:strokeColor="#FF777777"
+        app:strokeWidth="1dp"
+
+        tools:ignore="MissingConstraints" />
 
 
     <include

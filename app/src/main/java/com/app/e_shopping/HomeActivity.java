@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
-
+import com.synnapps.carouselview.ImageListener;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -51,13 +51,15 @@ public class HomeActivity extends AppCompatActivity
     private AppBarConfiguration mAppBarConfiguration;
     private String type="";
   RecyclerView.LayoutManager layoutManager;
+    CarouselView carouselView;
 
-
+    int[] sampleImages = {R.drawable.ca, R.drawable.crt, R.drawable.backm, R.drawable.backmain};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
 
 
@@ -162,7 +164,22 @@ public class HomeActivity extends AppCompatActivity
 
             }
         });
+
+
+
+        carouselView = (CarouselView) findViewById(R.id.carouselView);
+        carouselView.setPageCount(sampleImages.length);
+
+        carouselView.setImageListener(imageListener);
     }
+
+    ImageListener imageListener = new ImageListener() {
+        @Override
+        public void setImageForPosition(int position, ImageView imageView) {
+            imageView.setImageResource(sampleImages[position]);
+        }
+    };
+
 
     ///// hay ll product
 

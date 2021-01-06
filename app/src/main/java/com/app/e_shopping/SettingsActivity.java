@@ -37,16 +37,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SettingsActivity extends AppCompatActivity {
     private CircleImageView profileImageView;
-    private EditText fullNameEditText, userEmailEditText, addressEditText;
-    private TextView profileChangeTextBtn,  closeTextBtn, saveTextButton;
+    private EditText fullNameEditText, useremailEditText, addressEditText;
+    private TextView profileChangeTextBtn, closeTextBtn, saveTextButton;
+    private Button securityQuestionBtn;
 
     private Uri imageUri;
     private String myUrl = "";
     private StorageTask uploadTask;
-    private StorageReference storageProfilePrictureRef;
+    private StorageReference storageProfilePictureRef;
     private String checker = "";
-    private Button securityQuestionbtn;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,33 +53,43 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Profile pictures");
+        storageProfilePictureRef = FirebaseStorage.getInstance().getReference().child("Profile pictures");
+
         profileImageView = (CircleImageView) findViewById(R.id.settings_profile_image);
         fullNameEditText = (EditText) findViewById(R.id.settings_full_name);
-        userEmailEditText = (EditText) findViewById(R.id.settings_email);
+        useremailEditText = (EditText) findViewById(R.id.settings_email);
         addressEditText = (EditText) findViewById(R.id.settings_address);
         profileChangeTextBtn = (TextView) findViewById(R.id.profile_image_change_btn);
         closeTextBtn = (TextView) findViewById(R.id.close_settings_btn);
         saveTextButton = (TextView) findViewById(R.id.update_account_settings_btn);
+        securityQuestionBtn = findViewById(R.id.security_questions_btn);
 
+        userInfoDisplay(profileImageView, fullNameEditText, useremailEditText, addressEditText);
 
-
-        userInfoDisplay(profileImageView, fullNameEditText, userEmailEditText, addressEditText);
-
-
-        closeTextBtn.setOnClickListener(new View.OnClickListener() {
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view)
+            public void onClick(View v)
             {
                 finish();
             }
         });
 
-
-
-        saveTextButton.setOnClickListener(new View.OnClickListener() {
+        securityQuestionBtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view)
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(SettingsActivity.this,ResetPasswordActivity.class);
+                intent.putExtra("check", "settings");
+                startActivity(intent);
+            }
+        });
+
+        saveTextButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
             {
                 if (checker.equals("clicked"))
                 {
@@ -90,22 +99,24 @@ public class SettingsActivity extends AppCompatActivity {
                 {
                     updateOnlyUserInfo();
                 }
+
             }
         });
 
-
-        profileChangeTextBtn.setOnClickListener(new View.OnClickListener() {
+        profileChangeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view)
+            public void onClick(View v)
             {
-
                 checker = "clicked";
 
                 CropImage.activity(imageUri)
-                        .setAspectRatio(1, 1)
+                        .setAspectRatio(1,1)
                         .start(SettingsActivity.this);
+
             }
         });
+
     }
 
 
@@ -115,23 +126,27 @@ public class SettingsActivity extends AppCompatActivity {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
 
         HashMap<String, Object> userMap = new HashMap<>();
-        userMap. put("name", fullNameEditText.getText().toString());
-        userMap. put("address", addressEditText.getText().toString());
-        userMap. put("phoneOrder", userEmailEditText.getText().toString());
+        userMap.put("name", fullNameEditText.getText().toString());
+        userMap.put("address", addressEditText.getText().toString());
+        userMap.put("emailOrder", useremailEditText.getText().toString());
         ref.child(Prevalent.currentonlineusers.getEmail()).updateChildren(userMap);
 
+
         startActivity(new Intent(SettingsActivity.this, HomeActivity.class));
-        Toast.makeText(SettingsActivity.this, "Profile Info update successfully.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SettingsActivity.this, "Profil Bilgileri Başarılı Güncellendi", Toast.LENGTH_SHORT).show();
         finish();
     }
 
 
+
+
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE  &&  resultCode==RESULT_OK  &&  data!=null)
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data!=null)
         {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             imageUri = result.getUri();
@@ -140,8 +155,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this, "Error, Try Again.", Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(this, "Hata, Tekrar Deneyin", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(SettingsActivity.this, SettingsActivity.class));
             finish();
         }
@@ -149,45 +163,46 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-
     private void userInfoSaved()
     {
         if (TextUtils.isEmpty(fullNameEditText.getText().toString()))
         {
-            Toast.makeText(this, "Name is mandatory.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Bir isim girmelisiniz.", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(addressEditText.getText().toString()))
         {
-            Toast.makeText(this, "Address is address.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Bir adres girmelisiniz.", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(userEmailEditText.getText().toString()))
+        else if (TextUtils.isEmpty(useremailEditText.getText().toString()))
         {
-            Toast.makeText(this, "Email is mandatory.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Bir telefon girmelisiniz.", Toast.LENGTH_SHORT).show();
         }
-        else if(checker.equals("clicked"))
+        else if (checker.equals("clicked"))
         {
             uploadImage();
         }
+
     }
+
 
 
 
     private void uploadImage()
     {
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Update Profile");
-        progressDialog.setMessage("Please wait, while we are updating your account information");
+        progressDialog.setTitle("Profili Güncelle");
+        progressDialog.setMessage("Hesap bilgileriniz güncellenirken lütfen bekleyiniz");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
         if (imageUri != null)
         {
-            final StorageReference fileRef = storageProfilePrictureRef
-                    .child(Prevalent.currentonlineusers.getEmail() + ".jpg");
+            final StorageReference fileRef = storageProfilePictureRef.child(Prevalent.currentonlineusers.getEmail() + ".jpg");
 
             uploadTask = fileRef.putFile(imageUri);
 
-            uploadTask.continueWithTask(new Continuation() {
+            uploadTask.continueWithTask(new Continuation()
+            {
                 @Override
                 public Object then(@NonNull Task task) throws Exception
                 {
@@ -195,56 +210,59 @@ public class SettingsActivity extends AppCompatActivity {
                     {
                         throw task.getException();
                     }
-
                     return fileRef.getDownloadUrl();
                 }
-            })
-                    .addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task)
-                        {
-                            if (task.isSuccessful())
-                            {
-                                Uri downloadUrl = task.getResult();
-                                myUrl = downloadUrl.toString();
+            }).addOnCompleteListener(new OnCompleteListener<Uri>()
+            {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task)
+                {
+                    if (task.isSuccessful())
+                    {
+                        Uri downloadUrl = task.getResult();
+                        myUrl = downloadUrl.toString();
 
-                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
 
-                                HashMap<String, Object> userMap = new HashMap<>();
-                                userMap. put("name", fullNameEditText.getText().toString());
-                                userMap. put("address", addressEditText.getText().toString());
-                                userMap. put("phoneOrder", userEmailEditText.getText().toString());
-                                userMap. put("image", myUrl);
-                                ref.child(Prevalent.currentonlineusers.getEmail()).updateChildren(userMap);
+                        HashMap<String, Object> userMap = new HashMap<>();
+                        userMap.put("name", fullNameEditText.getText().toString());
+                        userMap.put("address", addressEditText.getText().toString());
+                        userMap.put("phoneOrder", useremailEditText.getText().toString());
+                        userMap.put("image", myUrl);
+                        ref.child(Prevalent.currentonlineusers.getEmail()).updateChildren(userMap);
 
-                                progressDialog.dismiss();
+                        progressDialog.dismiss();
 
-                                startActivity(new Intent(SettingsActivity.this, HomeActivity.class));
-                                Toast.makeText(SettingsActivity.this, "Profile Info update successfully.", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
-                            else
-                            {
-                                progressDialog.dismiss();
-                                Toast.makeText(SettingsActivity.this, "Error.", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                        startActivity(new Intent(SettingsActivity.this, HomeActivity.class));
+                        Toast.makeText(SettingsActivity.this, "Profil Bilgileri Başarılı Güncellendi", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    else
+                    {
+                        progressDialog.dismiss();
+                        Toast.makeText(SettingsActivity.this, "Hata", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
+
         else
         {
-            Toast.makeText(this, "image is not selected.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Resim seçmediniz", Toast.LENGTH_SHORT).show();
+
         }
     }
 
 
-    private void userInfoDisplay(final CircleImageView profileImageView, final EditText fullNameEditText, final EditText userPhoneEditText, final EditText addressEditText)
-    {
-        DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentonlineusers.getEmail());
 
-        UsersRef.addValueEventListener(new ValueEventListener() {
+    private void userInfoDisplay(final CircleImageView profileImageView, final EditText fullNameEditText, final EditText useremailEditText, final EditText addressEditText)
+    {
+        DatabaseReference UserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentonlineusers.getEmail());
+
+        UserRef.addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 if (dataSnapshot.exists())
                 {
@@ -257,18 +275,17 @@ public class SettingsActivity extends AppCompatActivity {
 
                         Picasso.get().load(image).into(profileImageView);
                         fullNameEditText.setText(name);
-                        userPhoneEditText.setText(email);
+                        useremailEditText.setText(email);
                         addressEditText.setText(address);
                     }
                 }
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
 
             }
         });
     }
-
-
 }
