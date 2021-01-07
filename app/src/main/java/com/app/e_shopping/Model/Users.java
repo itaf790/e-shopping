@@ -76,7 +76,7 @@ public class Users {
         this.image = image;
     }
 
-    public Users(String email, String name, String password) {
+    public Users(String email, String name, String password, String lastname , String image, String address ) {
 
 
 

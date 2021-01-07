@@ -76,7 +76,8 @@
         android:padding="20dp"
         android:shadowColor="#8C7070"
         android:textColorHint="#201E1E"
-        android:textColor="#000000"/>
+        android:textColor="#000000"
+        />
 
 
     <LinearLayout
@@ -105,8 +106,8 @@
             android:background="@drawable/inputs"
             android:ems="10"
             android:hint="Phone Number"
-            android:inputType="textPhonetic"
-            android:maxLength="9"
+            android:inputType="phone"
+            android:maxLength="11"
             android:padding="20dp"
             android:shadowColor="#8C7070"
             android:textColor="#000000"

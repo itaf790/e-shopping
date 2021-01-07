@@ -26,7 +26,7 @@
         android:id="@+id/text"
         android:textAlignment="center"
         android:textColor="#372E2E"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textStyle="bold"></TextView>
 
 
@@ -41,19 +41,20 @@
 
         <ImageView
             android:id="@+id/product_image_mantain"
-            android:layout_width="match_parent"
+            android:layout_width="380dp"
             android:layout_height="200dp"
-
+android:layout_centerHorizontal="true"
             android:scaleType="centerCrop" />
 
         <EditText
             android:id="@+id/product_name_mantain"
-            android:layout_width="match_parent"
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_image_mantain"
             android:layout_marginStart="5dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="5dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="5dp"
 
             android:background="@drawable/input_design"
@@ -67,13 +68,14 @@
 
         <EditText
             android:id="@+id/product_price_mantain"
-            android:layout_width="match_parent"
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_name_mantain"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/input_design"
             android:gravity="center_horizontal"
             android:hint="Product Price"
@@ -85,13 +87,14 @@
 
         <EditText
             android:id="@+id/product_description_mantain"
-            android:layout_width="match_parent"
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_price_mantain"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/input_design"
             android:gravity="center_horizontal"
             android:hint="Product Description"
@@ -103,7 +106,7 @@
 
         <Button
             android:id="@+id/apply_changes_btn"
-            android:layout_width="match_parent"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_description_mantain"
             android:layout_marginStart="15dp"
@@ -112,6 +115,7 @@
             android:layout_marginBottom="15dp"
             android:background="@drawable/buttons"
             android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
             android:hint="Apply Changes"
             android:padding="12dp"
             android:textAlignment="center"
@@ -120,12 +124,13 @@
 
         <Button
             android:id="@+id/delete_pdt_btn"
-            android:layout_width="match_parent"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/apply_changes_btn"
             android:layout_marginStart="15dp"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="15dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="15dp"
             android:background="@drawable/buttons"
             android:gravity="center_horizontal"

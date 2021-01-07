@@ -4,29 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/sann"
+    android:background="@drawable/wall"
     >
-
-    <ImageView
-        android:id="@+id/close"
-        android:layout_width="50dp"
-        android:layout_height="44dp"
-        android:src="@drawable/back"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_gravity="center"
-        ></ImageView>
-    <TextView
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:gravity="center|center_horizontal"
-        android:text="Check Orders"
-        android:textAlignment="center"
-        android:textColor="#372E2E"
-        android:textSize="30dp"
-        android:textStyle="bold"></TextView>
 
 
     <RelativeLayout
@@ -34,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
        android:background="@drawable/inputs"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="10dp"
 
         >
 

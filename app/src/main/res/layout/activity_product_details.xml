@@ -7,11 +7,36 @@
     tools:context=".ProductDetailsActivity"
     android:background="@drawable/wall">
 
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="50dp"
+        android:layout_height="44dp"
+        android:src="@drawable/back"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        ></ImageView>
+    <TextView
+        android:id="@+id/textsignin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp"
+        android:text="Product Details"
+        android:textColor="#000000"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
     <ImageView
         android:id="@+id/product_image_details"
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_width="380dp"
+        android:layout_height="220dp"
+        android:layout_centerHorizontal="true"
         android:scaleType="centerCrop"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/close"
         />
 
     <TextView
@@ -61,10 +86,11 @@
         app:textSize="16dp"
         android:background="#FAB34B"
         app:initialNumber="1"
+
         app:finalNumber="10"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/product_price_details"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
 
         >
 
@@ -76,11 +102,11 @@
         android:id="@+id/pd_add_to_cart_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:background="#FAB34B"
+        android:background="@drawable/inputs"
         android:layout_margin="15dp"
         android:layout_centerInParent="true"
         android:text="Add to Cart"
-        android:textColor="@android:color/white"
+        android:textColor="#000000"
         android:textSize="18dp"
         android:layout_below="@id/number_btn"
         />

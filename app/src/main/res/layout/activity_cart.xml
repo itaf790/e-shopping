@@ -7,26 +7,34 @@
     tools:context=".CartActivity"
     android:background="@drawable/sann">
 
-    <RelativeLayout
-        android:id="@+id/r11"
-        android:layout_width="match_parent"
+
+
+
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="40dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/back"></ImageView>
+
+    <TextView
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:layout_alignParentTop="true"
-        >
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:gravity="center|center_horizontal"
+        android:text="Total Price"
+        android:id="@+id/total_price"
+        android:textAlignment="center"
+        android:textColor="#372E2E"
+        android:textSize="20dp"
+        android:textStyle="bold"></TextView>
 
-        <TextView
-            android:id="@+id/total_price"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center|center_horizontal"
-            android:text="Total Price"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="20dp" />
 
-    </RelativeLayout>
+
+
 
 
 
@@ -48,21 +56,21 @@
         android:id="@+id/cart_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/r11"
+        android:layout_below="@+id/total_price"
         android:layout_above="@+id/next_process_btn">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/next_process_btn"
-        android:layout_width="300dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/inputs"
         android:text="Next"
         android:gravity="center"
         android:layout_centerInParent="true"
-        android:textColor="@android:color/white"
+        android:textColor="#000000"
         android:textSize="20dp"
         android:layout_margin="10dp"
         />

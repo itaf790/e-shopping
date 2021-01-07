@@ -15,11 +15,35 @@
         android:layout_width="350dp"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
+        android:layout_below="@id/text"
         android:src="@drawable/ic_menu_camera"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
 
         />
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="50dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/back"></ImageView>
+
+    <TextView
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center|center_horizontal"
+        android:text="Add Products"
+        android:id="@+id/text"
+        android:textAlignment="center"
+        android:textColor="#372E2E"
+        android:textSize="25dp"
+        android:textStyle="bold"></TextView>
+
+
 
 
     <EditText

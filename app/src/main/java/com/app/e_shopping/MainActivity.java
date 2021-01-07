@@ -38,22 +38,22 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private ImageView closeTextBtn;
+   // private ImageView closeTextBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        closeTextBtn = (ImageView) findViewById(R.id.close);
-        closeTextBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                finish();
-            }
-        });
+      //  closeTextBtn = (ImageView) findViewById(R.id.close);
+      //  closeTextBtn.setOnClickListener(new View.OnClickListener()
+      //  {
+         //   @Override
+         //   public void onClick(View v)
+         //   {
+         //       finish();
+         //   }
+      //  });
 
         btnjoin = (Button)findViewById(R.id.btnjoin);
         btnlogin = (Button)findViewById(R.id.btnlogin);

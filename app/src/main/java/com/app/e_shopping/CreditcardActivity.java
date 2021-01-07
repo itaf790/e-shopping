@@ -26,25 +26,22 @@ import java.util.HashMap;
 
 public class CreditcardActivity extends AppCompatActivity {
 
-    private ImageView closeTextBtn;
+
     CardForm cardForm;
     Button buy;
     AlertDialog.Builder alertBuilder;
-
+    private ImageView closeTextBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creditcard);
 
-        closeTextBtn = (ImageView) findViewById(R.id.close);
-        closeTextBtn.setOnClickListener(new View.OnClickListener()
-        {
+       closeTextBtn = (ImageView) findViewById(R.id.close);
+        closeTextBtn.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v)
-            {
-                finish();
-            }
+            public void onClick(View v){
+                finish();}
         });
 
 

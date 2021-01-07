@@ -28,7 +28,7 @@
         android:id="@+id/text"
         android:textAlignment="center"
         android:textColor="#372E2E"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textStyle="bold"></TextView>
 
 

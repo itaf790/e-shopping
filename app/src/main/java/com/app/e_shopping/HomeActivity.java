@@ -46,6 +46,14 @@ import io.paperdb.Paper;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    @NonNull
+    @Override
+    public LayoutInflater getLayoutInflater() {
+        return super.getLayoutInflater();
+    }
+
+
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
     private AppBarConfiguration mAppBarConfiguration;
@@ -105,13 +113,7 @@ public class HomeActivity extends AppCompatActivity
 
         View headerView = navigationView.getHeaderView(0);
         TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
-
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
-
-        if(!type.equals("Admin")) {
-            userNameTextView.setText(Prevalent.currentonlineusers.getName());
-            Picasso.get().load(Prevalent.currentonlineusers.getImage()).placeholder(R.drawable.profile).into(profileImageView);
-        }
 
 
 
@@ -168,10 +170,12 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-
+        if(!type.equals("Admin")) {
+            userNameTextView.setText(Prevalent.currentonlineusers.getName());
+            Picasso.get().load(Prevalent.currentonlineusers.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+        }
 
     }
-
 
 
     ///// hay ll product

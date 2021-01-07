@@ -8,32 +8,56 @@
     android:background="@drawable/wall"
     >
 
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="40dp"
+        android:layout_height="44dp"
+        android:src="@drawable/back"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        ></ImageView>
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp"
+        android:text="Credit Card"
+        android:textColor="#000000"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+
     <com.braintreepayments.cardform.view.SupportedCardTypesView
         android:id="@+id/supported_card_types"
-        android:layout_marginTop="90sp"
+        android:layout_marginTop="90dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingTop="20dp"
+        android:layout_below="@id/text"
         android:textColor="#000000"/>
 
     <com.braintreepayments.cardform.view.CardForm
         android:id="@+id/card_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
 
         />
 
     <Button
         android:id="@+id/btnBuy"
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="40dp"
         android:textSize="20dp"
-
+android:layout_centerHorizontal="true"
         android:layout_marginBottom="57dp"
         android:background="@drawable/inputs"
         android:text="Buy Now"

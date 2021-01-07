@@ -178,22 +178,22 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
                             if (!ans1.equals(answer1))
                             {
-                                Toast.makeText(ResetPasswordActivity.this, "İlk sorunuzun cevabı yanlış", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ResetPasswordActivity.this, "The answer to your first question is wrong", Toast.LENGTH_SHORT).show();
                             }
                             else if (!ans2.equals(answer2))
                             {
-                                Toast.makeText(ResetPasswordActivity.this, "İkinci sorunuzun cevabı yanlış", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ResetPasswordActivity.this, "The answer to your second question is wrong", Toast.LENGTH_SHORT).show();
                             }
                             else
                             {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(ResetPasswordActivity.this);
-                                builder.setTitle("Yeni Şifre");
+                                builder.setTitle("new password");
 
                                 final EditText newPassword = new EditText(ResetPasswordActivity.this);
-                                newPassword.setHint("Yeni şifrenizi buraya yazın");
+                                newPassword.setHint("Type your new password here");
                                 builder.setView(newPassword);
 
-                                builder.setPositiveButton("Değiştir", new DialogInterface.OnClickListener()
+                                builder.setPositiveButton("Change", new DialogInterface.OnClickListener()
                                 {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which)
@@ -209,7 +209,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                                                         {
                                                             if (task.isSuccessful())
                                                             {
-                                                                Toast.makeText(ResetPasswordActivity.this, "Şifreniz değiştirildi.", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(ResetPasswordActivity.this, "Your password has been changed.", Toast.LENGTH_SHORT).show();
 
                                                                 Intent intent = new Intent(ResetPasswordActivity.this,login.class);
                                                                 startActivity(intent);
@@ -220,7 +220,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                                     }
                                 });
 
-                                builder.setNegativeButton("Çıkış", new DialogInterface.OnClickListener()
+                                builder.setNegativeButton("Exit", new DialogInterface.OnClickListener()
                                 {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which)
@@ -236,13 +236,13 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
                         else
                         {
-                            Toast.makeText(ResetPasswordActivity.this, "Güvenlik sorularını daha belirlemediniz.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ResetPasswordActivity.this, "You haven't set security questions yet.", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     else
                     {
-                        Toast.makeText(ResetPasswordActivity.this, "Telefon numarası bulunamadı. Tekrar deneyin", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ResetPasswordActivity.this, "Email not found. Try again", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -256,7 +256,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         else
         {
-            Toast.makeText(this, "Lütfen soruları yanıtlayın", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please answer the questions", Toast.LENGTH_SHORT).show();
         }
 
 

@@ -55,14 +55,6 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
 
-        closeTextBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                finish();
-            }
-        });
 
 
         storageProfilePictureRef = FirebaseStorage.getInstance().getReference().child("Profile pictures");
@@ -145,7 +137,8 @@ public class SettingsActivity extends AppCompatActivity {
 
 
         startActivity(new Intent(SettingsActivity.this, HomeActivity.class));
-        Toast.makeText(SettingsActivity.this, "Profil Bilgileri Başarılı Güncellendi", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SettingsActivity.this, "\n" +
+                "Profile information has been successfully updated", Toast.LENGTH_SHORT).show();
         finish();
     }
 
@@ -167,7 +160,8 @@ public class SettingsActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this, "Hata, Tekrar Deneyin", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "\n" +
+                    "Error, Try Again", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(SettingsActivity.this, SettingsActivity.class));
             finish();
         }
@@ -179,15 +173,16 @@ public class SettingsActivity extends AppCompatActivity {
     {
         if (TextUtils.isEmpty(fullNameEditText.getText().toString()))
         {
-            Toast.makeText(this, "Bir isim girmelisiniz.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "\n" +
+                    "You must enter a name.", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(addressEditText.getText().toString()))
         {
-            Toast.makeText(this, "Bir adres girmelisiniz.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You must enter an address.", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(useremailEditText.getText().toString()))
         {
-            Toast.makeText(this, "Bir telefon girmelisiniz.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You must enter an email.", Toast.LENGTH_SHORT).show();
         }
         else if (checker.equals("clicked"))
         {
@@ -202,8 +197,8 @@ public class SettingsActivity extends AppCompatActivity {
     private void uploadImage()
     {
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Profili Güncelle");
-        progressDialog.setMessage("Hesap bilgileriniz güncellenirken lütfen bekleyiniz");
+        progressDialog.setTitle("Update Profile");
+        progressDialog.setMessage("Please wait while your account information is updated");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
@@ -239,20 +234,20 @@ public class SettingsActivity extends AppCompatActivity {
                         HashMap<String, Object> userMap = new HashMap<>();
                         userMap.put("name", fullNameEditText.getText().toString());
                         userMap.put("address", addressEditText.getText().toString());
-                        userMap.put("phoneOrder", useremailEditText.getText().toString());
+                        userMap.put("emailOrder", useremailEditText.getText().toString());
                         userMap.put("image", myUrl);
                         ref.child(Prevalent.currentonlineusers.getEmail()).updateChildren(userMap);
 
                         progressDialog.dismiss();
 
                         startActivity(new Intent(SettingsActivity.this, HomeActivity.class));
-                        Toast.makeText(SettingsActivity.this, "Profil Bilgileri Başarılı Güncellendi", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingsActivity.this, "Profile Information Successfully Updated", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                     else
                     {
                         progressDialog.dismiss();
-                        Toast.makeText(SettingsActivity.this, "Hata", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingsActivity.this, "Error", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -260,7 +255,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         else
         {
-            Toast.makeText(this, "Resim seçmediniz", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You did not choose a picture", Toast.LENGTH_SHORT).show();
 
         }
     }
